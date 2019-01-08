@@ -15,9 +15,9 @@
 		android:layout_width = "wrap_content"
 		android:layout_height = "wrap_content"		
 		android:src = "@mipmap/baseline_add_black_48dp"
-		android:layout_gravity = "left"	
+		android:layout_gravity  = "right"
 		android:layout_marginRight = "15dp"
-		local:MvxBind = "Click TaskCreateCommand"/>	
+		local:MvxBind = "Click TaskCreateCommand"/>			
 		<TextView
 		android:layout_width = "wrap_content"
 		android:layout_height = "wrap_content"

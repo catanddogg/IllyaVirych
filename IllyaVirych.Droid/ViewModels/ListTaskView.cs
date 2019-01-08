@@ -1,4 +1,5 @@
-﻿using Android.OS;
+﻿using Android.Graphics;
+using Android.OS;
 using Android.Runtime;
 using Android.Support.V7.Widget;
 using Android.Views;
@@ -30,7 +31,7 @@ namespace IllyaVirych.Droid.ViewModels
             _recyclerView.Adapter = recyclerAdapter;
             var toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             ParentActivity.SetSupportActionBar(toolbar);
-            ParentActivity.SupportActionBar.Title = "";
+            ParentActivity.SupportActionBar.Title = "";           
             return view;
         }
 

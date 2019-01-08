@@ -7,9 +7,10 @@ using System.Text;
 
 namespace IllyaVirych.Core.ViewModels
 {
-    public class MenuViewModel : MvxViewModel
+    public class MenuViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
+
         public IMvxCommand TaskCreateCommand { get; set; }
 
         public MenuViewModel(IMvxNavigationService navigationService)

@@ -33,7 +33,7 @@ namespace IllyaVirych.Droid.ViewModels
             var buttonTextSaveTask = view.FindViewById<Button>(Resource.Id.Savetask);
             buttonTextSaveTask.Click += ButtonSaveTaskClick;
             _linearLayoutMain = view.FindViewById<LinearLayout>(Resource.Id.test_layout);
-            _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
+            _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar1);
             _linearLayoutMain.Click += delegate
             {
                 HideSoftKeyboard();

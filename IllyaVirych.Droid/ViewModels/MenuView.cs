@@ -1,32 +1,26 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
-using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
+using Android.Support.Graphics.Drawable;
 using Android.Views;
-using Android.Widget;
 using IllyaVirych.Core.ViewModels;
+using MvvmCross.Droid.Support.V4;
 using MvvmCross.Platforms.Android.Binding.BindingContext;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
-using MvvmCross.Platforms.Android.Views.Fragments;
+
 
 namespace IllyaVirych.Droid.ViewModels
 {
-    [MvxFragmentPresentation(typeof(ListTaskViewModel), Resource.Id.navigation_frame)]
+    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.navigation_frame)]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private NavigationView _navigationView;
         private IMenuItem _previousMenuItem;
-        public override void OnCreate(Bundle savedInstanceState)
+        public MenuFragment()
         {
-            base.OnCreate(savedInstanceState);
         }
-
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
@@ -42,6 +36,10 @@ namespace IllyaVirych.Droid.ViewModels
             iconTask.SetChecked(true);
 
             _previousMenuItem = iconTask;
+
+            var iconPeople = _navigationView.Menu.FindItem(Resource.Id.nav_about);
+            iconTask.SetCheckable(false);
+            iconTask.SetChecked(true);
 
             return view;
         }

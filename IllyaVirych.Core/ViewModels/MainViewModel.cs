@@ -7,7 +7,7 @@ using System.Text;
 
 namespace IllyaVirych.Core.ViewModels
 {
-    public class MainViewModel :MvxViewModel
+    public class MainViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
         public IMvxAsyncCommand ShowListTaskModelCommand { get; set; }

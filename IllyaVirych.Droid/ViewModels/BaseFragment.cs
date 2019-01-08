@@ -20,11 +20,10 @@ namespace IllyaVirych.Droid.ViewModels
 {
     public abstract class BaseFragment : MvxFragment
     {
-        private Toolbar toolbar;
+        private Toolbar _toolbar;
         private MvxActionBarDrawerToggle _drawerToggle;
         protected abstract int FragmentId { get; }
-        //private int _currentCheckPosition = 0;
-
+        
         public MvxAppCompatActivity ParentActivity
         {
             get
@@ -36,46 +35,45 @@ namespace IllyaVirych.Droid.ViewModels
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
+
             var view = this.BindingInflate(FragmentId, null);
 
-            //toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar1);
-            //if (toolbar != null)
-            //{
-            //    ParentActivity.SetSupportActionBar(toolbar);
-            //    ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+            _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
+            if (_toolbar != null)
+            {
+                ParentActivity.SetSupportActionBar(_toolbar);
+                ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
 
-            //    _drawerToggle = new MvxActionBarDrawerToggle(
-            //        Activity,
-            //        ((MainView)ParentActivity).DrawerLayout,
-            //        toolbar,
-            //        Resource.String.drawer_open,
-            //        Resource.String.drawer_close
-            //        );
-            //    _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
-            //    ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);
-            //}
+                _drawerToggle = new MvxActionBarDrawerToggle(
+                    Activity,
+                    ((MainView)ParentActivity).DrawerLayout,
+                    _toolbar,
+                    Resource.String.drawer_open,
+                    Resource.String.drawer_close
+                    );
+                _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
+                ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);
+            }
 
             return view;
         }
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            if (toolbar != null)
+            if (_toolbar != null)
             {
                 _drawerToggle.OnConfigurationChanged(newConfig);
             }
         }
-        public override void OnSaveInstanceState(Bundle outState)
-        {
-            base.OnSaveInstanceState(outState);
-            //outState.PutInt("current_choice", _currentCheckPosition);
-
-        }
+        //public override void OnSaveInstanceState(Bundle outState)
+        //{
+        //    base.OnSaveInstanceState(outState);
+        //}
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            //_currentCheckPosition = savedInstanceState.GetInt("current_choice", 0);
-            //_drawerToggle.SyncState();
+            if (_toolbar != null)
+                _drawerToggle.SyncState();
         }
     }
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel

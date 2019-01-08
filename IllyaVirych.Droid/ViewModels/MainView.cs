@@ -27,29 +27,25 @@ namespace IllyaVirych.Droid.ViewModels
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);
+            base.OnCreate(bundle);           
 
             SetContentView(Resource.Layout.MainView);
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
 
             if (bundle == null)
             {
-                ViewModel.ShowListTaskModelCommand.Execute(null);
-                //ViewModel.ShowMenuViewModelCommand.Execute(null);             
+                ViewModel.ShowMenuViewModelCommand.Execute(null);
+                ViewModel.ShowListTaskModelCommand.Execute(null);                            
             }
         }
-
-
-        public void HideSoftKeyboard()
+        public override bool OnOptionsItemSelected(IMenuItem item)
         {
-            if (CurrentFocus == null)
+            if (item.ItemId == Android.Resource.Id.Home)
             {
-                return;
+                DrawerLayout.OpenDrawer(GravityCompat.Start);
+                return true;
             }
-            InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(InputMethodService);
-            inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
-
-            CurrentFocus.ClearFocus();
+            return base.OnOptionsItemSelected(item);
         }
         public override void OnBackPressed()
         {
@@ -62,5 +58,17 @@ namespace IllyaVirych.Droid.ViewModels
                 base.OnBackPressed();
             }
         }
+
+        public void HideSoftKeyboard()
+        {
+            if (CurrentFocus == null)
+            {
+                return;
+            }
+            InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(InputMethodService);
+            inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+
+            CurrentFocus.ClearFocus();
+        }       
     }
 }
