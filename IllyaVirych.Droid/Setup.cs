@@ -6,10 +6,6 @@ namespace IllyaVirych.Droid
 {
     public class Setup : MvxAppCompatSetup<IllyaVirych.Core.App>
     {
-        //protected override IMvxAndroidViewPresenter CreateViewPresenter()
-        //{
-        //    return new MvxAppCompatViewPresenter(AndroidViewAssemblies);
-        //}
 
         protected override IMvxApplication CreateApp()
         {

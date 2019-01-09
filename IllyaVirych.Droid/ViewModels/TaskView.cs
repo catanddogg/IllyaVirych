@@ -10,9 +10,10 @@ using Android.OS;
 using Android.Runtime;
 using Android.Views;
 using Android.Views.InputMethods;
-using Android.Widget;
 using IllyaVirych.Core.ViewModels;
 using MvvmCross.Platforms.Android.Presenters.Attributes;
+using Android.Support.V7.Widget;
+using Android.Widget;
 
 namespace IllyaVirych.Droid.ViewModels
 {
@@ -20,10 +21,9 @@ namespace IllyaVirych.Droid.ViewModels
     public class TaskView : BaseFragment<TaskViewModel>
     {
         protected override int FragmentId => Resource.Layout.TaskView;
-
-        //private InputMethodManager _imm;
+        
         private LinearLayout _linearLayoutMain;
-        private Toolbar _toolbar;
+        private Android.Support.V7.Widget.Toolbar _toolbar;
         private View _view;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -33,7 +33,7 @@ namespace IllyaVirych.Droid.ViewModels
             var buttonTextSaveTask = view.FindViewById<Button>(Resource.Id.Savetask);
             buttonTextSaveTask.Click += ButtonSaveTaskClick;
             _linearLayoutMain = view.FindViewById<LinearLayout>(Resource.Id.test_layout);
-            _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar1);
+            _toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar1);
             _linearLayoutMain.Click += delegate
             {
                 HideSoftKeyboard();

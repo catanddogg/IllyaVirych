@@ -8,4 +8,5 @@
     <color name="gray">#212121</color>
     <color name="light_gray">#272a2c</color>
     <color name="hint_light_gray">#424242</color>
+    <color name="white">#FFFFFF</color>  
 </resources>

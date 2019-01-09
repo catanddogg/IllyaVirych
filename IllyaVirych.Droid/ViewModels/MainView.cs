@@ -34,8 +34,8 @@ namespace IllyaVirych.Droid.ViewModels
 
             if (bundle == null)
             {
-                ViewModel.ShowMenuViewModelCommand.Execute(null);
-                ViewModel.ShowListTaskModelCommand.Execute(null);                            
+               
+                ViewModel.ShowListTaskModelCommand.Execute(null);                  
             }
         }
         public override bool OnOptionsItemSelected(IMenuItem item)

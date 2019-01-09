@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace IllyaVirych.Core.ViewModels
 {
-    public class AboutTaskViewModel : MvxViewModel
+    public class AboutTaskViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand BackTaskCommand { get; set; }

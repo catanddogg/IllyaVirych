@@ -9,6 +9,9 @@ namespace IllyaVirych.Droid
     [Application]
     public class MainApplication : MvxAppCompatApplication<Setup, App>
     {
+        public MainApplication()
+        {
+        }
         public MainApplication(IntPtr javaReference, JniHandleOwnership transfer)
             : base(javaReference, transfer)
         {

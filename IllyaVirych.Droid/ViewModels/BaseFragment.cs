@@ -52,7 +52,7 @@ namespace IllyaVirych.Droid.ViewModels
                     Resource.String.drawer_close
                     );
                 _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
-                ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);
+                ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);              
             }
 
             return view;
@@ -73,7 +73,9 @@ namespace IllyaVirych.Droid.ViewModels
         {
             base.OnActivityCreated(savedInstanceState);
             if (_toolbar != null)
+            {
                 _drawerToggle.SyncState();
+            }
         }
     }
     public abstract class BaseFragment<TViewModel> : BaseFragment where TViewModel : class, IMvxViewModel

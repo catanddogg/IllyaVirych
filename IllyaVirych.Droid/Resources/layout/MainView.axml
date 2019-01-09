@@ -20,6 +20,6 @@
 	<FrameLayout
 			android:id="@+id/navigation_frame"
 			android:layout_width = "match_parent"
-		    android:layout_height = "match_parent"
-			android:layout_gravity="left|start"/>
+		    android:layout_height = "match_parent"		   
+			android:layout_gravity = "left|start"/>
 </android.support.v4.widget.DrawerLayout> 

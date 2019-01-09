@@ -10,11 +10,12 @@ using System.Threading.Tasks;
 
 namespace IllyaVirych.Core.ViewModels
 {
-    public class ListTaskViewModel : MvxViewModel
+    public class ListTaskViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _iTaskService;
         private MvxObservableCollection<TaskItem> _items;
+        public IMvxCommand ShowMenuViewModelCommand { get; set; }
         public IMvxCommand<TaskItem> TaskCreateCommand { get; set; }
         public IMvxCommand ShowAboutCommand { get; set; }
         private bool _refreshTaskCollection;
@@ -27,6 +28,7 @@ namespace IllyaVirych.Core.ViewModels
             Items = new MvxObservableCollection<TaskItem>();
             TaskCreateCommand = new MvxAsyncCommand<TaskItem>(TaskCreate);
             ShowAboutCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AboutTaskViewModel>());
+            ShowMenuViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<MenuViewModel>());
         }
 
         public override void ViewAppearing()
