@@ -22,7 +22,6 @@ namespace IllyaVirych.Droid.ViewModels
     [Activity(Label = "RecycleView", MainLauncher = true)]
     public class MainView : MvxAppCompatActivity<MainViewModel>
     {
-       // private  InstagramApp
 
         public DrawerLayout DrawerLayout { get; set; }
 
@@ -32,43 +31,50 @@ namespace IllyaVirych.Droid.ViewModels
 
             SetContentView(Resource.Layout.MainView);
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
+                      
 
             if (bundle == null)
             {               
                 ViewModel.ShowLoginViewModelCommand.Execute(null);                  
             }
         }
-        //public override bool OnOptionsItemSelected(IMenuItem item)
-        //{
-        //    if (item.ItemId == Android.Resource.Id.Home)
-        //    {
-        //        DrawerLayout.OpenDrawer(GravityCompat.Start);
-        //        return true;
-        //    }
-        //    return base.OnOptionsItemSelected(item);
-        //}
-        //public override void OnBackPressed()
-        //{
-        //    if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
-        //    {
-        //        DrawerLayout.CloseDrawers();
-        //    }
-        //    else
-        //    {
-        //        base.OnBackPressed();
-        //    }
-        //}
-
+        public override bool OnOptionsItemSelected(IMenuItem item)
+        {
+            if (item.ItemId == Android.Resource.Id.Home)
+            {
+                DrawerLayout.OpenDrawer(GravityCompat.Start);
+                return true;
+            }
+            return base.OnOptionsItemSelected(item);
+        }
+        public override void OnBackPressed()
+        {
+            if (DrawerLayout != null && DrawerLayout.IsDrawerOpen(GravityCompat.Start))
+            {
+                DrawerLayout.CloseDrawers();
+            }
+            else
+            {
+                base.OnBackPressed();
+            }
+        }
+        
         public void HideSoftKeyboard()
         {
-            //if (CurrentFocus == null)
-            //{
-            //    return;
-            //}
-            //InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(InputMethodService);
-            //inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
+            if (CurrentFocus == null)
+            {
+                return;
+            }
+            InputMethodManager inputMethodManager = (InputMethodManager)GetSystemService(InputMethodService);
+            inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
 
-            //CurrentFocus.ClearFocus();
+            CurrentFocus.ClearFocus();
         }
+        //public void DrawerEnabled(Boolean enabled)
+        //{
+        //    enabled = true;
+        //    int lockMode = enabled ? DrawerLayout.LockModeUnlocked : DrawerLayout.LockModeLockedClosed;
+        //    DrawerLayout.SetDrawerLockMode(lockMode);
+        //}
     }
 }

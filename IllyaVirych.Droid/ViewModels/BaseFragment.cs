@@ -15,6 +15,7 @@ using MvvmCross.Platforms.Android.Binding.BindingContext;
 using Android.Support.V7.Widget;
 using Android.Content.Res;
 using MvvmCross.ViewModels;
+using Android.Support.V4.Widget;
 
 namespace IllyaVirych.Droid.ViewModels
 {
@@ -23,7 +24,8 @@ namespace IllyaVirych.Droid.ViewModels
         private Toolbar _toolbar;
         private MvxActionBarDrawerToggle _drawerToggle;
         protected abstract int FragmentId { get; }
-        
+        private bool _enabledDrawerLayout;
+
         public MvxAppCompatActivity ParentActivity
         {
             get
@@ -37,30 +39,40 @@ namespace IllyaVirych.Droid.ViewModels
             var ignore = base.OnCreateView(inflater, container, savedInstanceState);
 
             var view = this.BindingInflate(FragmentId, null);
-
             _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
-            if (FragmentId != Resource.Layout.LoginView)
+
+            if (_toolbar != null)
             {
-                if (_toolbar != null)
-                {
-                    ParentActivity.SetSupportActionBar(_toolbar);
-                    ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);                   
-                        _drawerToggle = new MvxActionBarDrawerToggle(
-                            Activity,
-                            ((MainView)ParentActivity).DrawerLayout,
-                            _toolbar,
-                            Resource.String.drawer_open,
-                            Resource.String.drawer_close
-                            );
-                        _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
-                        ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);
-                   
-                }
+                ParentActivity.SetSupportActionBar(_toolbar);
+                ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
+                _drawerToggle = new MvxActionBarDrawerToggle(
+                    Activity,
+                    ((MainView)ParentActivity).DrawerLayout,
+                    _toolbar,
+                    Resource.String.drawer_open,
+                    Resource.String.drawer_close
+                    );
+                _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
+                ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);
             }
+            EnableDrawerLayout();
 
             return view;
         }       
-     
+        public void EnableDrawerLayout()
+        {
+            if (FragmentId == Resource.Layout.LoginView)
+            {
+                _enabledDrawerLayout = false;
+            }
+            if (FragmentId != Resource.Layout.LoginView)
+            {
+                _enabledDrawerLayout = true;
+
+            }
+            int lockMode = _enabledDrawerLayout ? DrawerLayout.LockModeUnlocked : DrawerLayout.LockModeLockedClosed;
+            ((MainView)Activity).DrawerLayout.SetDrawerLockMode(lockMode);
+        }
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
@@ -71,11 +83,7 @@ namespace IllyaVirych.Droid.ViewModels
                     _drawerToggle.OnConfigurationChanged(newConfig);
                 }
             }
-        }
-        //public override void OnSaveInstanceState(Bundle outState)
-        //{
-        //    base.OnSaveInstanceState(outState);
-        //}
+        }        
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
