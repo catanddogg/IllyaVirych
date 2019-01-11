@@ -24,7 +24,8 @@ namespace IllyaVirych.Droid.ViewModels
             var view = base.OnCreateView(inflater, container, savedInstanceState);
             HasOptionsMenu = true;
             _recyclerView = view.FindViewById<MvxRecyclerView>(Resource.Id.RecyclerView);
-            _layoutManager = new GridLayoutManager(this.Context, 2);                        _recyclerView.SetLayoutManager(_layoutManager);
+            _layoutManager = new GridLayoutManager(this.Context, 2);
+            _recyclerView.SetLayoutManager(_layoutManager);
             var recyclerAdapter = new TaskListAdapter((IMvxAndroidBindingContext)this.BindingContext);
             _recyclerView.Adapter = recyclerAdapter;
             var toolbar = view.FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);

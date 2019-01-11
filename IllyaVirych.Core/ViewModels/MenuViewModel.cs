@@ -12,13 +12,15 @@ namespace IllyaVirych.Core.ViewModels
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand TaskCreateViewCommand { get; set; }
         public IMvxCommand AboutViewCommand { get; set; }
+        public IMvxCommand LoginViewCommand { get; set; }
 
-        public MenuViewModel(IMvxNavigationService navigationService)
+    public MenuViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;
 
             TaskCreateViewCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<TaskViewModel>());
             AboutViewCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AboutTaskViewModel>());
+            LoginViewCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
         }
     }
 }

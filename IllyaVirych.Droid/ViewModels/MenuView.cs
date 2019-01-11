@@ -18,8 +18,7 @@ namespace IllyaVirych.Droid.ViewModels
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.navigation_frame)]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
-        private NavigationView _navigationView;
-        private IMenuItem _previousMenuItem;
+        private NavigationView _navigationView;       
        
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
@@ -48,6 +47,10 @@ namespace IllyaVirych.Droid.ViewModels
             if (itemId == Resource.Id.nav_about)
             {
                 ViewModel.AboutViewCommand.Execute(null);
+            }
+            if (itemId == Resource.Id.nav_login)
+            {
+                ViewModel.LoginViewCommand.Execute(null);
             }
         }
     }

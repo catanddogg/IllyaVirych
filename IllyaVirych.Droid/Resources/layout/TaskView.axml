@@ -43,9 +43,11 @@
       android:layout_marginBottom = "30dp" >
       <ToggleButton
 	  android:id = "@+id/togglebutton" 
-      android:layout_width = "60dp" 
+      android:layout_width = "70dp" 
       android:layout_height = "wrap_content"
 	  android:background="@color/darkgreen"
+	  android:textOn = "On"
+	  android:textOff = "Off"			
 	  android:layout_marginLeft="5dp"    
       android:layout_marginTop="5dp"        
       android:layout_marginRight="5dp"        

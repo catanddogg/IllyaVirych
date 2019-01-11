@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace IllyaVirych.Core.ViewModels
 {
-    public class TaskViewModel : MvxViewModel<TaskItem>
+    public class TaskViewModel : BaseViewModel<TaskItem>
     {
         private readonly IMvxNavigationService _navigationService;
         private readonly ITaskService _iTaskService;

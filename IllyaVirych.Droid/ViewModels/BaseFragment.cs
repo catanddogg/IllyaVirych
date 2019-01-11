@@ -39,30 +39,37 @@ namespace IllyaVirych.Droid.ViewModels
             var view = this.BindingInflate(FragmentId, null);
 
             _toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar);
-            if (_toolbar != null)
+            if (FragmentId != Resource.Layout.LoginView)
             {
-                ParentActivity.SetSupportActionBar(_toolbar);
-                ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);
-
-                _drawerToggle = new MvxActionBarDrawerToggle(
-                    Activity,
-                    ((MainView)ParentActivity).DrawerLayout,
-                    _toolbar,
-                    Resource.String.drawer_open,
-                    Resource.String.drawer_close
-                    );
-                _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
-                ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);              
+                if (_toolbar != null)
+                {
+                    ParentActivity.SetSupportActionBar(_toolbar);
+                    ParentActivity.SupportActionBar.SetDisplayHomeAsUpEnabled(true);                   
+                        _drawerToggle = new MvxActionBarDrawerToggle(
+                            Activity,
+                            ((MainView)ParentActivity).DrawerLayout,
+                            _toolbar,
+                            Resource.String.drawer_open,
+                            Resource.String.drawer_close
+                            );
+                        _drawerToggle.DrawerOpened += (object sender, ActionBarDrawerEventArgs e) => ((MainView)Activity)?.HideSoftKeyboard();
+                        ((MainView)ParentActivity).DrawerLayout.AddDrawerListener(_drawerToggle);
+                   
+                }
             }
 
             return view;
-        }
+        }       
+     
         public override void OnConfigurationChanged(Configuration newConfig)
         {
             base.OnConfigurationChanged(newConfig);
-            if (_toolbar != null)
+            if (FragmentId != Resource.Layout.LoginView)
             {
-                _drawerToggle.OnConfigurationChanged(newConfig);
+                if (_toolbar != null)
+                {
+                    _drawerToggle.OnConfigurationChanged(newConfig);
+                }
             }
         }
         //public override void OnSaveInstanceState(Bundle outState)
@@ -72,9 +79,12 @@ namespace IllyaVirych.Droid.ViewModels
         public override void OnActivityCreated(Bundle savedInstanceState)
         {
             base.OnActivityCreated(savedInstanceState);
-            if (_toolbar != null)
+            if (FragmentId != Resource.Layout.LoginView)
             {
-                _drawerToggle.SyncState();
+                if (_toolbar != null)
+                {
+                    _drawerToggle.SyncState();
+                }
             }
         }
     }
