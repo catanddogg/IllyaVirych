@@ -16,7 +16,7 @@ namespace IllyaVirych.Core
                .AsInterfaces()
                .RegisterAsLazySingleton();
 
-            RegisterAppStart<ListTaskViewModel>();
+            RegisterCustomAppStart<AppStart>();
         }
     }
 }

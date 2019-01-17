@@ -8,8 +8,7 @@ namespace IllyaVirych.Core.Models
     [Table("User")]
     public class User
     {
-        [PrimaryKey, AutoIncrement]
-        public int Id { get; set; }
+        [PrimaryKey]       
         public string UserId { get; set; }
 
         public User(string userId)

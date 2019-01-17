@@ -21,17 +21,12 @@ namespace IllyaVirych.Droid.ViewModels
     [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.content_frame, true)]
     public class AboutView : BaseFragment<AboutTaskViewModel>
     {
-        //private Toolbar _toolbar;
-
         protected override int FragmentId => Resource.Layout.AboutView;
 
         public override View OnCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
         {
-            var view = base.OnCreateView(inflater, container, savedInstanceState);
-            //_toolbar = view.FindViewById<Toolbar>(Resource.Id.toolbar1);
-            //ParentActivity.SetSupportActionBar(_toolbar);
-            //ParentActivity.SupportActionBar.Title = "AboutTask";
-            return view;
-        }      
+            var view = base.OnCreateView(inflater, container, savedInstanceState);      
+            
+            return view;        }      
     }
 }

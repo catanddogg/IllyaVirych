@@ -1,4 +1,5 @@
 ﻿using IllyaVirych.Core.Interface;
+using IllyaVirych.Core.Models;
 using IllyaVirych.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -33,9 +34,9 @@ namespace IllyaVirych.Core.ViewModels
 
         public override void ViewAppearing()
         {
-            var list = _iTaskService.GetAllConstantsData();
+            var list = _iTaskService.GetUserTasks(CurrentInstagramUser.CurrentInstagramUserId);
             Items = new MvxObservableCollection<TaskItem>(list);
-            RaisePropertyChanged();
+            RaisePropertyChanged(() => Items);
             base.ViewAppearing();
         }
 
@@ -67,7 +68,7 @@ namespace IllyaVirych.Core.ViewModels
         public void RefreshTask()
         {
             RefreshTaskCollection = true;
-            var list = _iTaskService.GetAllConstantsData();
+            var list = _iTaskService.GetAllTasks();
             Items = new MvxObservableCollection<TaskItem>(list);
             RefreshTaskCollection = false;
         }

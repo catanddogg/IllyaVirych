@@ -6,7 +6,6 @@ namespace IllyaVirych.Droid
 {
     public class Setup : MvxAppCompatSetup<IllyaVirych.Core.App>
     {
-
         protected override IMvxApplication CreateApp()
         {
             CreatableTypes()
@@ -15,6 +14,5 @@ namespace IllyaVirych.Droid
                 .RegisterAsLazySingleton();
             return base.CreateApp();
         }
-
     }
 }

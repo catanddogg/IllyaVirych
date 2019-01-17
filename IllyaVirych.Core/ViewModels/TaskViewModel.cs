@@ -1,4 +1,5 @@
 ﻿using IllyaVirych.Core.Interface;
+using IllyaVirych.Core.Models;
 using IllyaVirych.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
@@ -22,6 +23,7 @@ namespace IllyaVirych.Core.ViewModels
         private string _descriptionTask;
         private bool _statusTask;
         private bool _enableStatusNameTask;
+        private string _userId; 
 
         public TaskViewModel(IMvxNavigationService navigationService, ITaskService iTaskService)
         {
@@ -34,7 +36,7 @@ namespace IllyaVirych.Core.ViewModels
 
         private async Task BackTask()
         {
-            var result = await _navigationService.Close(this);
+            var result = await _navigationService.Navigate<ListTaskViewModel>();         
         }
 
         private async Task DeleteTask()
@@ -51,7 +53,7 @@ namespace IllyaVirych.Core.ViewModels
             }
             if (NameTask != null & NameTask != string.Empty)
             {
-                TaskItem taskItem = new TaskItem(IdTask, NameTask, DescriptionTask, StatusTask);
+                TaskItem taskItem = new TaskItem(IdTask, NameTask, DescriptionTask, StatusTask,UserId);
                 _iTaskService.InsertTask(taskItem);
             }
             await _navigationService.Close(this);
@@ -69,10 +71,12 @@ namespace IllyaVirych.Core.ViewModels
                 EnableStatusNameTask = false;
                 IdTask = parameter.Id;
                 NameTask = parameter.NameTask;
+                UserId = parameter.UserId;
                 DescriptionTask = parameter.DescriptionTask;
                 StatusTask = parameter.StatusTask;
                 return;
             }
+            _userId = CurrentInstagramUser.CurrentInstagramUserId;
             EnableStatusNameTask = true;
         }
 
@@ -103,6 +107,16 @@ namespace IllyaVirych.Core.ViewModels
             {
                 _descriptionTask = value;
                 RaisePropertyChanged(() => DescriptionTask);
+            }
+        }
+
+        public string UserId
+        {
+            get => _userId;
+            set
+            {
+                _userId = value;
+                RaisePropertyChanged(() => UserId);
             }
         }
 

@@ -15,7 +15,7 @@ using MvvmCross.Platforms.Android.Presenters.Attributes;
 
 namespace IllyaVirych.Droid.ViewModels
 {
-    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.navigation_frame)]
+    [MvxFragmentPresentation(typeof(MainViewModel), Resource.Id.navigation_frame, true)]
     public class MenuFragment : MvxFragment<MenuViewModel>, NavigationView.IOnNavigationItemSelectedListener
     {
         private NavigationView _navigationView;       

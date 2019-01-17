@@ -1,38 +1,43 @@
-﻿using MvvmCross.Commands;
+﻿using IllyaVirych.Core.Interface;
+using MvvmCross.Commands;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace IllyaVirych.Core.ViewModels
 {
     public class MainViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
+        private readonly ILoginService _iLoginService; 
         public IMvxAsyncCommand ShowLoginViewModelCommand { get; set; }
-        public IMvxAsyncCommand ShowLoginViewModel1Command { get; set; }
-        private bool _enableDrawerLayout = false;
+        public IMvxAsyncCommand ShowListTaskViewModelCommand { get; set; }
+        public IMvxCommand CurrentMainViewCommand { get; set; }       
 
-        public MainViewModel(IMvxNavigationService navigationService)
+        public MainViewModel(IMvxNavigationService navigationService, ILoginService iLoginService)
         {
             _navigationService = navigationService;
+            _iLoginService = iLoginService;
 
             ShowLoginViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
-            ShowLoginViewModel1Command = new MvxAsyncCommand(async () => await _navigationService.Navigate<ListTaskViewModel>());
+            ShowListTaskViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ListTaskViewModel>());
+            CurrentMainViewCommand = new MvxAsyncCommand(CurrentMainView);
         }
-        
-        public bool EnableDrawerLayout
+
+        public async Task CurrentMainView()
         {
-            get
+            if (_iLoginService.FindAccount == null)
             {
-                return EnableDrawerLayout = _enableDrawerLayout;
+                ShowLoginViewModelCommand.Execute(null);
             }
-            set
+            if(_iLoginService.FindAccount != null)
             {
-                _enableDrawerLayout = value;
-                RaisePropertyChanged(() => EnableDrawerLayout);
+                ShowListTaskViewModelCommand.Execute(null);
             }
-        }
+        }     
+   
     }
 }

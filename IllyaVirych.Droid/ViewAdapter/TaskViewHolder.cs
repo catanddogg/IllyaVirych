@@ -25,8 +25,7 @@ namespace IllyaVirych.Droid.ViewAdapter
             this.DelayBind(() =>
             {
                 var set = this.CreateBindingSet<TasksViewHolder, TaskItem>();
-                set.Bind(this.NameTaskHolder).To(x => x.NameTask);
-                //set.Bind(this.LinearLayoutTaskHolder).To(z => z.StatusTask);
+                set.Bind(this.NameTaskHolder).To(x => x.NameTask);                
                 set.Apply();
             });
         }

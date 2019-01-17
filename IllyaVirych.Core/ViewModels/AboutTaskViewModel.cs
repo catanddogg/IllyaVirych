@@ -20,7 +20,7 @@ namespace IllyaVirych.Core.ViewModels
 
         private async Task BackTask()
         {
-            var result = await _navigationService.Close(this);
+            await _navigationService.Navigate<ListTaskViewModel>();           
         }
     }
 }

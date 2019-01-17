@@ -1,4 +1,5 @@
 ﻿using IllyaVirych.Core.Interface;
+using IllyaVirych.Core.Models;
 using SQLite;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ namespace IllyaVirych.Core.Services
         {
             _sQLiteConnection = sQLiteConnection.GetDatebaseConnection();
             _sQLiteConnection.CreateTable<TaskItem>();
+            _sQLiteConnection.CreateTable<User>();
         }
 
         public void DeleteTask(int _idTask)
@@ -32,10 +34,27 @@ namespace IllyaVirych.Core.Services
                 _sQLiteConnection.Update(task);
             }
         }
+        public List<TaskItem> GetUserTasks(string currentUserId)
+        {
+            return (from data in _sQLiteConnection.Table<TaskItem>() where data.UserId == currentUserId select data).ToList();
+        }
 
-        public List<TaskItem> GetAllConstantsData()
+        public List<TaskItem> GetAllTasks()
         {
             return (from data in _sQLiteConnection.Table<TaskItem>() select data).ToList();
+        }
+
+        public List<User> GetAllUsers()
+        {
+            return (from data in _sQLiteConnection.Table<User>() select data).ToList();
+        }
+        public  User GetUser(string currentInstagramUserId)
+        {
+            return _sQLiteConnection.Table<User>().FirstOrDefault(x => x.UserId == currentInstagramUserId);
+        }
+        public void InsertUser(User user)
+        {        
+                _sQLiteConnection.Insert(user);
         }
     }
 }

@@ -31,11 +31,11 @@ namespace IllyaVirych.Droid.ViewModels
 
             SetContentView(Resource.Layout.MainView);
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-                      
+
 
             if (bundle == null)
-            {               
-                ViewModel.ShowLoginViewModelCommand.Execute(null);                  
+            {
+                ViewModel.CurrentMainViewCommand.Execute(null);
             }
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
@@ -69,12 +69,6 @@ namespace IllyaVirych.Droid.ViewModels
             inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
 
             CurrentFocus.ClearFocus();
-        }
-        //public void DrawerEnabled(Boolean enabled)
-        //{
-        //    enabled = true;
-        //    int lockMode = enabled ? DrawerLayout.LockModeUnlocked : DrawerLayout.LockModeLockedClosed;
-        //    DrawerLayout.SetDrawerLockMode(lockMode);
-        //}
+        }      
     }
 }
