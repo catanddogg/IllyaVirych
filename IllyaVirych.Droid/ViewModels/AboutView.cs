@@ -27,6 +27,7 @@ namespace IllyaVirych.Droid.ViewModels
         {
             var view = base.OnCreateView(inflater, container, savedInstanceState);      
             
-            return view;        }      
+            return view;
+        }      
     }
 }

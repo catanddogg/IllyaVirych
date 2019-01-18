@@ -12,30 +12,26 @@ namespace IllyaVirych.Core.ViewModels
     public class MainViewModel : BaseViewModel
     {
         private readonly IMvxNavigationService _navigationService;
-        private readonly ILoginService _iLoginService; 
-        public IMvxAsyncCommand ShowLoginViewModelCommand { get; set; }
-        public IMvxAsyncCommand ShowListTaskViewModelCommand { get; set; }
+        private readonly ILoginService _iLoginService;         
         public IMvxCommand CurrentMainViewCommand { get; set; }       
 
         public MainViewModel(IMvxNavigationService navigationService, ILoginService iLoginService)
         {
             _navigationService = navigationService;
             _iLoginService = iLoginService;
-
-            ShowLoginViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<LoginViewModel>());
-            ShowListTaskViewModelCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ListTaskViewModel>());
+            
             CurrentMainViewCommand = new MvxAsyncCommand(CurrentMainView);
         }
 
-        public async Task CurrentMainView()
+        private async Task CurrentMainView()
         {
             if (_iLoginService.FindAccount == null)
             {
-                ShowLoginViewModelCommand.Execute(null);
+                await _navigationService.Navigate<LoginViewModel>();
             }
             if(_iLoginService.FindAccount != null)
             {
-                ShowListTaskViewModelCommand.Execute(null);
+                await _navigationService.Navigate<ListTaskViewModel>();                
             }
         }     
    

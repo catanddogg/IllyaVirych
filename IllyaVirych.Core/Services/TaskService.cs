@@ -17,6 +17,7 @@ namespace IllyaVirych.Core.Services
             _sQLiteConnection = sQLiteConnection.GetDatebaseConnection();
             _sQLiteConnection.CreateTable<TaskItem>();
             _sQLiteConnection.CreateTable<User>();
+            _sQLiteConnection.CreateTable<TaskInGoogleMap>();
         }
 
         public void DeleteTask(int _idTask)
@@ -55,6 +56,23 @@ namespace IllyaVirych.Core.Services
         public void InsertUser(User user)
         {        
                 _sQLiteConnection.Insert(user);
+        }
+        //TaskInGoogleMap
+        //public User GetMarkerGoogleMap()
+        public void InsertMarkerGoogleMap(TaskInGoogleMap taskInGoogleMap)
+        {
+            if (taskInGoogleMap.Id == 0)
+            {
+                _sQLiteConnection.Insert(taskInGoogleMap);
+            }
+            if (taskInGoogleMap.Id != 0)
+            {
+                _sQLiteConnection.Update(taskInGoogleMap);
+            }
+        }
+        public void DeleteMarkerGoogleMap(int _idTask)
+        {
+            _sQLiteConnection.Delete(_idTask);
         }
     }
 }

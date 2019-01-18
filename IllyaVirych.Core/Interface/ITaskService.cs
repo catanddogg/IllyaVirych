@@ -14,5 +14,8 @@ namespace IllyaVirych.Core.Interface
         List<User> GetAllUsers();
         User GetUser(string currentInstagramUserId);
         void InsertUser(User user);
+
+        void InsertMarkerGoogleMap(TaskInGoogleMap taskInGoogleMap);
+        void DeleteMarkerGoogleMap(int _idTask);
     }
 }

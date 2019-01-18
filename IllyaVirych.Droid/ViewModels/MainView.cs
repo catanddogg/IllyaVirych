@@ -5,6 +5,7 @@ using System.Text;
 
 using Android.App;
 using Android.Content;
+using Android.Gms.Maps;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.V4.View;
@@ -27,12 +28,11 @@ namespace IllyaVirych.Droid.ViewModels
 
         protected override void OnCreate(Bundle bundle)
         {
-            base.OnCreate(bundle);           
-
+            base.OnCreate(bundle);
+           
             SetContentView(Resource.Layout.MainView);
             DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-
-
+                       
             if (bundle == null)
             {
                 ViewModel.CurrentMainViewCommand.Execute(null);
@@ -69,6 +69,6 @@ namespace IllyaVirych.Droid.ViewModels
             inputMethodManager.HideSoftInputFromWindow(CurrentFocus.WindowToken, 0);
 
             CurrentFocus.ClearFocus();
-        }      
+        }        
     }
 }

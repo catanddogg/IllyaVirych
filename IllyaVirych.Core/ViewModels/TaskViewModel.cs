@@ -18,6 +18,8 @@ namespace IllyaVirych.Core.ViewModels
         public IMvxCommand SaveTaskCommand { get; set; }
         public IMvxCommand DeleteTaskCommand { get; set; }
         public IMvxCommand BackTaskCommand { get; set; }
+        public IMvxCommand DeleteMarkerGoogleMapCommand { get; set; }
+        public IMvxCommand GoogleCardCommand { get; set; }
         private int _idTask;
         private string _nameTask;
         private string _descriptionTask;
@@ -29,9 +31,21 @@ namespace IllyaVirych.Core.ViewModels
         {
             _navigationService = navigationService;
             _iTaskService = iTaskService;
+            GoogleCardCommand = new MvxAsyncCommand<TaskItem>(CreateMarkerGoogleMap);
             SaveTaskCommand = new MvxAsyncCommand(SaveTask);
             DeleteTaskCommand = new MvxAsyncCommand(DeleteTask);
             BackTaskCommand = new MvxAsyncCommand(BackTask);
+            DeleteMarkerGoogleMapCommand = new MvxCommand(DeleteMarkerGoogleMap);
+        }
+
+        private void DeleteMarkerGoogleMap()
+        {
+            _iTaskService.DeleteMarkerGoogleMap(_idTask);
+        }
+
+        private async Task CreateMarkerGoogleMap(TaskItem item)
+        {
+            await _navigationService.Navigate<MapsViewModel, TaskItem>(item);
         }
 
         private async Task BackTask()
