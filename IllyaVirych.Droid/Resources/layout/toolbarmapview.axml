@@ -19,6 +19,7 @@
 		local:MvxBind = "Click BackTaskCommand"/>
 		<ImageButton
 		android:layout_width = "50dp"
+			android:id = "@+id/savegooglemarker"
 		android:layout_height = "50dp"
 		android:layout_marginRight = "5dp"		
 		android:background ="@drawable/baseline_add_location_black_48dp"		

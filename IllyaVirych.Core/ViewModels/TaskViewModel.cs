@@ -1,8 +1,10 @@
 ﻿using IllyaVirych.Core.Interface;
+using IllyaVirych.Core.Messenger;
 using IllyaVirych.Core.Models;
 using IllyaVirych.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
 using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -14,43 +16,71 @@ namespace IllyaVirych.Core.ViewModels
     public class TaskViewModel : BaseViewModel<TaskItem>
     {
         private readonly IMvxNavigationService _navigationService;
+        private readonly IMvxMessenger _messenger;
         private readonly ITaskService _iTaskService;
         public IMvxCommand SaveTaskCommand { get; set; }
         public IMvxCommand DeleteTaskCommand { get; set; }
         public IMvxCommand BackTaskCommand { get; set; }
         public IMvxCommand DeleteMarkerGoogleMapCommand { get; set; }
-        public IMvxCommand GoogleCardCommand { get; set; }
+        public IMvxCommand GoogleMapCommand { get; set; }
         private int _idTask;
         private string _nameTask;
         private string _descriptionTask;
         private bool _statusTask;
         private bool _enableStatusNameTask;
-        private string _userId; 
+        private string _userId;
+        private double _lalitudeGoogleMarkerResult;
+        private double _longitudeGoogleMarkerResult;
+        private int _idMap;
+        private MvxSubscriptionToken _token;
 
-        public TaskViewModel(IMvxNavigationService navigationService, ITaskService iTaskService)
-        {
+        public TaskViewModel(IMvxNavigationService navigationService, ITaskService iTaskService, IMvxMessenger messenger)
+        {            
             _navigationService = navigationService;
             _iTaskService = iTaskService;
-            GoogleCardCommand = new MvxAsyncCommand<TaskItem>(CreateMarkerGoogleMap);
+            _messenger = messenger;
+            _token = messenger.Subscribe<GoogleMapMessenger>(OnLocationMessage);
             SaveTaskCommand = new MvxAsyncCommand(SaveTask);
             DeleteTaskCommand = new MvxAsyncCommand(DeleteTask);
             BackTaskCommand = new MvxAsyncCommand(BackTask);
             DeleteMarkerGoogleMapCommand = new MvxCommand(DeleteMarkerGoogleMap);
+            GoogleMapCommand = new MvxAsyncCommand(CreateMarkerGoogleMap);
+        }
+
+        private void OnLocationMessage(GoogleMapMessenger googleMap)
+        {
+            LalitudeGoogleMarkerResult = googleMap.LalitudeGoogleMarkerResult;
+            LongitudeGoogleMarkerResult = googleMap.LongitudeGoogleMarkerResult;
+            NameTask = googleMap.NameTaskResult;
+            DescriptionTask = googleMap.DescriptionTaskResult;
+            StatusTask = googleMap.StatusTaskResult;
         }
 
         private void DeleteMarkerGoogleMap()
         {
-            _iTaskService.DeleteMarkerGoogleMap(_idTask);
+            LalitudeGoogleMarkerResult = 0;
+            LongitudeGoogleMarkerResult = 0;
         }
 
-        private async Task CreateMarkerGoogleMap(TaskItem item)
-        {
-            await _navigationService.Navigate<MapsViewModel, TaskItem>(item);
-        }
+        private async Task CreateMarkerGoogleMap()
+        {           
+            await _navigationService.Navigate<MapsViewModel>();
+
+            var message = new GoogleMapMessenger(this, 
+                LalitudeGoogleMarkerResult,
+                LongitudeGoogleMarkerResult,
+                NameTask,
+                DescriptionTask,
+                StatusTask                 
+                  );
+            UserId = CurrentInstagramUser.CurrentInstagramUserId;
+            _messenger.Publish(message);
+            _messenger.Unsubscribe<GoogleMapMessenger>(_token);
+        }       
 
         private async Task BackTask()
         {
-            var result = await _navigationService.Navigate<ListTaskViewModel>();         
+            var result = await _navigationService.Navigate<ListTaskViewModel>();            
         }
 
         private async Task DeleteTask()
@@ -67,8 +97,9 @@ namespace IllyaVirych.Core.ViewModels
             }
             if (NameTask != null & NameTask != string.Empty)
             {
-                TaskItem taskItem = new TaskItem(IdTask, NameTask, DescriptionTask, StatusTask,UserId);
-                _iTaskService.InsertTask(taskItem);
+                UserId = CurrentInstagramUser.CurrentInstagramUserId;
+                TaskItem taskItem = new TaskItem(IdTask, NameTask, DescriptionTask, StatusTask,UserId, LalitudeGoogleMarkerResult, LongitudeGoogleMarkerResult);
+                _iTaskService.InsertTask(taskItem);               
             }
             await _navigationService.Close(this);
         }
@@ -76,7 +107,8 @@ namespace IllyaVirych.Core.ViewModels
         public override Task Initialize()
         {
             return base.Initialize();
-        }
+        } 
+
 
         public override void Prepare(TaskItem parameter)
         {
@@ -84,14 +116,43 @@ namespace IllyaVirych.Core.ViewModels
             {
                 EnableStatusNameTask = false;
                 IdTask = parameter.Id;
-                NameTask = parameter.NameTask;
-                UserId = parameter.UserId;
+                NameTask = parameter.NameTask;               
+                UserId = CurrentInstagramUser.CurrentInstagramUserId;
                 DescriptionTask = parameter.DescriptionTask;
                 StatusTask = parameter.StatusTask;
+                LalitudeGoogleMarkerResult = parameter.LalitudeGoogleMarker;
+                LongitudeGoogleMarkerResult = parameter.LongitudeGoogleMarker;
                 return;
             }
             _userId = CurrentInstagramUser.CurrentInstagramUserId;
             EnableStatusNameTask = true;
+        }
+              
+        public double LalitudeGoogleMarkerResult
+        {
+            get
+            {
+                return _lalitudeGoogleMarkerResult;
+            }
+            set
+            {
+                _lalitudeGoogleMarkerResult = value;
+                RaisePropertyChanged(() => LalitudeGoogleMarkerResult);
+            }
+        }
+
+        public double LongitudeGoogleMarkerResult
+        {
+            get
+            {
+                return _longitudeGoogleMarkerResult;
+            }
+            set
+            {
+                _longitudeGoogleMarkerResult = value;
+                RaisePropertyChanged(() => LongitudeGoogleMarkerResult);
+            }
+
         }
 
         public int IdTask
@@ -110,7 +171,7 @@ namespace IllyaVirych.Core.ViewModels
             set
             {
                 _nameTask = value;
-                RaisePropertyChanged(() => NameTask);
+                RaisePropertyChanged(() => NameTask);                
             }
         }
 
@@ -151,6 +212,19 @@ namespace IllyaVirych.Core.ViewModels
             {
                 _enableStatusNameTask = value;
                 RaisePropertyChanged(() => EnableStatusNameTask);
+            }
+        }
+
+        public int IdMap
+        {
+            get
+            {
+                return _idMap;
+            }
+            set
+            {
+                _idMap = value;
+                RaisePropertyChanged(() => IdMap);
             }
         }
     }

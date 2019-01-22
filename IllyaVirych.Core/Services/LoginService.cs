@@ -32,23 +32,25 @@ namespace IllyaVirych.Core.Services
             if (data != null)
             {
                 AccountStore.Create().Delete(data, "InstagramUser");
+                CurrentInstagramUser.CurrentInstagramUserId = null;
             }
         }
         public async void InstagramCompletedAutgenticated(object sender, AuthenticatorCompletedEventArgs eventArgs)
         {
             if (eventArgs.IsAuthenticated)
             {
-                Account loggedInAccount = eventArgs.Account;
-                AccountStore.Create().Save(loggedInAccount, "InstagramUser");
+                Account loggedInAccount = eventArgs.Account;                
                 var request = new OAuth2Request("GET",
                     new Uri("https://api.instagram.com/v1/users/self/?access_token=8496248657.f23b40b.fbb30e8c10ff4214ad833e2ea3035deb"),
                     null,
                     eventArgs.Account);
                 var response = await request.GetResponseAsync();
                 var json = response.GetResponseText();
-                var jobject = JObject.Parse(json);
-                var id_user = jobject["data"]["id"]?.ToString();                
+                var jobject = JObject.Parse(json);                
+                var id_user = jobject["data"]["id"]?.ToString();
+                loggedInAccount.Properties.Add("id", id_user);
                 CurrentInstagramUser.CurrentInstagramUserId = id_user;
+                AccountStore.Create().Save(loggedInAccount, "InstagramUser");
                 OnLoggedInHandler();               
             }
         }

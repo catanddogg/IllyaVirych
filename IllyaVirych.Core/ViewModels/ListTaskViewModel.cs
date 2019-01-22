@@ -68,7 +68,7 @@ namespace IllyaVirych.Core.ViewModels
         public void RefreshTask()
         {
             RefreshTaskCollection = true;
-            var list = _iTaskService.GetAllTasks();
+            var list = _iTaskService.GetUserTasks(CurrentInstagramUser.CurrentInstagramUserId);
             Items = new MvxObservableCollection<TaskItem>(list);
             RefreshTaskCollection = false;
         }

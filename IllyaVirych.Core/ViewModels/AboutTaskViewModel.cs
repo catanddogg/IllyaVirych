@@ -12,6 +12,7 @@ namespace IllyaVirych.Core.ViewModels
     {
         private readonly IMvxNavigationService _navigationService;
         public IMvxCommand BackTaskCommand { get; set; }
+
         public AboutTaskViewModel(IMvxNavigationService navigationService)
         {
             _navigationService = navigationService;

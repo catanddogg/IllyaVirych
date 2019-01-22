@@ -35,7 +35,10 @@ namespace IllyaVirych.Droid.ViewModels
             _mapView = (MapView)view.FindViewById(Resource.Id.map);
             _mapView.OnCreate(savedInstanceState);
             _mapView.OnResume();
-            _mapView.GetMapAsync(this);            
+            _mapView.GetMapAsync(this);
+
+            var buttonGoogleMarkerSave = view.FindViewById<ImageButton>(Resource.Id.savegooglemarker);
+            buttonGoogleMarkerSave.Click += ButtonGoogleMarkerSaveClick;
 
             GoogleMapOptions mapOptions = new GoogleMapOptions()
             .InvokeMapType(GoogleMap.MapTypeSatellite)
@@ -45,8 +48,17 @@ namespace IllyaVirych.Droid.ViewModels
             return view;
         }
 
-        public void OnMapReady(GoogleMap googleMap)
+        private void ButtonGoogleMarkerSaveClick(object sender, EventArgs e)
         {
+            var lalitudeGoogleMarker = this.ViewModel.LalitudeGoogleMarker;
+            if (lalitudeGoogleMarker == 0)
+            {
+                Toast.MakeText(this.Context, "Put marker in google map!", ToastLength.Short).Show();
+            }
+        }
+
+        public void OnMapReady(GoogleMap googleMap)
+        {  
             _googleMap = googleMap;
             _googleMap.UiSettings.ZoomControlsEnabled = true;
             _googleMap.UiSettings.CompassEnabled = true;
@@ -62,7 +74,15 @@ namespace IllyaVirych.Droid.ViewModels
             _googleMap.MoveCamera(cameraUpdate);
 
             _markerOptions = new MarkerOptions();                       
-            _markerOptions.Draggable(true);             
+            _markerOptions.Draggable(true);
+            if (ViewModel.LalitudeGoogleMarker != 0)
+            {
+                _lalitude = this.ViewModel.LalitudeGoogleMarker;
+                _longitude = this.ViewModel.LongitudeGoogleMarker;
+                _latLng = new LatLng(_lalitude, _longitude);
+                _markerOptions.SetPosition(_latLng);
+                _googleMap.AddMarker(_markerOptions);
+            }
             _googleMap.MapClick += MapOptionsClick;            
             _googleMap.MarkerDragEnd += MarkerOptionLongClick;
 
@@ -71,24 +91,20 @@ namespace IllyaVirych.Droid.ViewModels
         }
         private void MarkerOptionLongClick(object sender, GoogleMap.MarkerDragEndEventArgs e)
         {
-            var latitude = e.Marker.Position.Latitude;
-            var longitude = e.Marker.Position.Longitude;
-            _lalitude = latitude;
-            _longitude = longitude;
+            _lalitude = e.Marker.Position.Latitude;
+            _longitude = e.Marker.Position.Longitude;            
             this.ViewModel.LalitudeGoogleMarker = _lalitude;
             this.ViewModel.LongitudeGoogleMarker = _longitude;
         }
 
         private void MapOptionsClick(object sender, GoogleMap.MapClickEventArgs e)
         {
-            var latitude = e.Point.Latitude;
-            var longitude = e.Point.Longitude;
-            _lalitude = latitude;
-            _longitude = longitude;
+            _lalitude = e.Point.Latitude;
+            _longitude = e.Point.Longitude;            
             this.ViewModel.LalitudeGoogleMarker = _lalitude;
             this.ViewModel.LongitudeGoogleMarker = _longitude;
             _googleMap.Clear();
-            _latLng = new LatLng(latitude, longitude);
+            _latLng = new LatLng(_lalitude, _longitude);
             _markerOptions.SetPosition(_latLng);
             _googleMap.AddMarker(_markerOptions);
             _googleMap.AnimateCamera(CameraUpdateFactory.NewLatLngZoom(_latLng, _googleMap.CameraPosition.Zoom));
@@ -98,16 +114,6 @@ namespace IllyaVirych.Droid.ViewModels
         {
             _mapView.OnLowMemory();
             base.OnLowMemory();
-        }
-
-        public override void OnResume()
-        {
-            base.OnResume();
-        }
-
-        public override void OnPause()
-        {
-            base.OnPause();
-        }
+        }        
     }
 }

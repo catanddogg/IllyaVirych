@@ -1,4 +1,6 @@
-﻿using IllyaVirych.Core.ViewModels;
+﻿using IllyaVirych.Core.Interface;
+using IllyaVirych.Core.Models;
+using IllyaVirych.Core.ViewModels;
 using MvvmCross.Navigation;
 using MvvmCross.ViewModels;
 using System;
@@ -10,13 +12,26 @@ namespace IllyaVirych.Core
 {
     public class AppStart : MvxAppStart 
     {
-        public AppStart(IMvxApplication app, IMvxNavigationService navigationService)
+        IMvxNavigationService _navigationService;
+        ILoginService _iLoginSrvice;
+
+        public AppStart(IMvxApplication app, IMvxNavigationService navigationService, ILoginService iLoginService)
             :base(app, navigationService)
         {
+            _navigationService = navigationService;
+            _iLoginSrvice = iLoginService;
         }
+
         protected override Task NavigateToFirstViewModel(object hint = null)
         {
-            return NavigationService.Navigate<MainViewModel>();
+            if (_iLoginSrvice.FindAccount != null)
+            {
+                CurrentInstagramUser.CurrentInstagramUserId = _iLoginSrvice.FindAccount.Properties["id"];
+                NavigationService.Navigate<MainViewModel>();                
+                return _navigationService.Navigate<ListTaskViewModel>();
+            }
+            NavigationService.Navigate<MainViewModel>();
+            return _navigationService.Navigate<LoginViewModel>();
         }
     }
 }

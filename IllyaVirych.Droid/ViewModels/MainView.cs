@@ -31,12 +31,7 @@ namespace IllyaVirych.Droid.ViewModels
             base.OnCreate(bundle);
            
             SetContentView(Resource.Layout.MainView);
-            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
-                       
-            if (bundle == null)
-            {
-                ViewModel.CurrentMainViewCommand.Execute(null);
-            }
+            DrawerLayout = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);           
         }
         public override bool OnOptionsItemSelected(IMenuItem item)
         {

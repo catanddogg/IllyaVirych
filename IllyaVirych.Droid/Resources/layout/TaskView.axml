@@ -63,7 +63,7 @@
 		android:background = "@drawable/buttonround"
 		android:layout_marginLeft="10dp"               
         android:layout_marginRight="10dp"         
-		local:MvxBind = "Click GoogleCardCommand"/>
+		local:MvxBind = "Click GoogleMapCommand"/>
 		<Button
 		android:layout_columnWeight = "1"	               
         android:text = "Clear GM"	

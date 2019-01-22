@@ -1,8 +1,11 @@
 ﻿using IllyaVirych.Core.Interface;
+using IllyaVirych.Core.Messenger;
 using IllyaVirych.Core.Models;
 using IllyaVirych.Core.Services;
 using MvvmCross.Commands;
 using MvvmCross.Navigation;
+using MvvmCross.Plugin.Messenger;
+using MvvmCross.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -10,25 +13,62 @@ using System.Threading.Tasks;
 
 namespace IllyaVirych.Core.ViewModels
 {
-    public class MapsViewModel : BaseViewModel<TaskItem>
-    {        
+    public class MapsViewModel : BaseViewModel
+    {      
+       
         private readonly IMvxNavigationService _navigationService;
-        private readonly ITaskService _iTaskService; 
+        private readonly ITaskService _iTaskService;
+        private readonly IMvxMessenger _messenger;
         public IMvxCommand BackTaskCommand { get; set; }
-        public IMvxCommand SaveGoogleMapPointCommand { get; set; }
+        public IMvxAsyncCommand SaveGoogleMapPointCommand { get; set; }
         private double _lalitudeGoogelMarker;
         private double _longitudeGoogleMarker;
         private int _idTask;
-        private int _id;
-        
-        public MapsViewModel(IMvxNavigationService navigationService, ITaskService iTaskService)
+        private string _nameTaskBackResult;
+        private string _descriptionTaskBackResult;
+        private bool _statusTaskBackResult;
+        private MvxSubscriptionToken _token;
+        private double _lalitudeGoogleMarkerBack;
+        private double _longlitudeGoogleMarkerBack;
+
+        public MapsViewModel(IMvxNavigationService navigationService, ITaskService iTaskService, IMvxMessenger messenger)
         {
             _navigationService = navigationService;
             _iTaskService = iTaskService;
-
-            BackTaskCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<TaskViewModel>());
-            SaveGoogleMapPointCommand = new MvxAsyncCommand(SaveGoogleMapPoint);
+            _messenger = messenger;
+            _token = messenger.Subscribe<GoogleMapMessenger>(OnLosationMessage);          
+            BackTaskCommand = new MvxAsyncCommand(BackGoogleMap);
+            SaveGoogleMapPointCommand = new MvxAsyncCommand(SaveGoogleMapPoint);                 
         }
+        
+        private async Task BackGoogleMap()
+        {
+            await _navigationService.Navigate<TaskViewModel>();
+
+            LalitudeGoogleMarker = _lalitudeGoogleMarkerBack;
+            LongitudeGoogleMarker = _longlitudeGoogleMarkerBack;
+            var message = new GoogleMapMessenger(this,
+             LalitudeGoogleMarker,
+             LongitudeGoogleMarker,
+             NameTaskBackResult,
+             DescriptionTaskBackResult,
+             StatusTaskBackResult
+                );
+            _messenger.Publish(message);
+            _messenger.Unsubscribe<GoogleMapMessenger>(_token);
+        }
+
+        private void OnLosationMessage(GoogleMapMessenger googleMap)
+        {
+            LalitudeGoogleMarker = googleMap.LalitudeGoogleMarkerResult;
+            LongitudeGoogleMarker= googleMap.LongitudeGoogleMarkerResult;
+            NameTaskBackResult = googleMap.NameTaskResult;
+            DescriptionTaskBackResult = googleMap.DescriptionTaskResult;
+            StatusTaskBackResult = googleMap.StatusTaskResult;
+            _lalitudeGoogleMarkerBack = googleMap.LalitudeGoogleMarkerResult;
+            _longlitudeGoogleMarkerBack = googleMap.LongitudeGoogleMarkerResult;
+        }
+
         private async Task SaveGoogleMapPoint()
         {
             if (LalitudeGoogleMarker == 0 & LongitudeGoogleMarker == 0)
@@ -36,25 +76,60 @@ namespace IllyaVirych.Core.ViewModels
                 return;
             }
             if (LalitudeGoogleMarker != 0 & LongitudeGoogleMarker != 0)
-            {
-                TaskInGoogleMap taskInGoogleMap = new TaskInGoogleMap(Id, IdTask, LalitudeGoogleMarker, LongitudeGoogleMarker);
-                _iTaskService.InsertMarkerGoogleMap(taskInGoogleMap);
+            {             
+                await _navigationService.Navigate<TaskViewModel>();
+
+                var message = new GoogleMapMessenger(this,
+              LalitudeGoogleMarker,
+              LongitudeGoogleMarker,
+              NameTaskBackResult,
+              DescriptionTaskBackResult,
+              StatusTaskBackResult
+                 );
+                _messenger.Publish(message);
+                _messenger.Unsubscribe<GoogleMapMessenger>(_token);
             }
-            await _navigationService.Navigate<TaskViewModel>();
-        }  
-        
-        public int Id
+        }          
+
+        public string NameTaskBackResult
         {
             get
             {
-                return _id;
+                return _nameTaskBackResult;
             }
             set
             {
-                _id = value;
-                RaisePropertyChanged(() => Id);
+                _nameTaskBackResult = value;
+                RaisePropertyChanged(() => NameTaskBackResult);
             }
         }
+
+        public string DescriptionTaskBackResult
+        {
+            get
+            {
+                return _descriptionTaskBackResult;
+            }
+            set
+            {
+                _descriptionTaskBackResult = value;
+                RaisePropertyChanged(() => DescriptionTaskBackResult);
+            }
+        }
+
+        public bool StatusTaskBackResult
+        {
+            get
+            {
+                return _statusTaskBackResult;
+            }
+            set
+            {
+                _statusTaskBackResult = value;
+                RaisePropertyChanged(() => StatusTaskBackResult);
+            }
+        }
+
         public int IdTask
         {
             get
@@ -92,14 +167,6 @@ namespace IllyaVirych.Core.ViewModels
                 _longitudeGoogleMarker = value;
                 RaisePropertyChanged(() => LongitudeGoogleMarker);
             }
-        }
-
-        public override void Prepare(TaskItem parameter)
-        {
-            if (parameter != null)
-            {
-                IdTask = parameter.Id;
-            }
-        }
+        }        
     }
 }

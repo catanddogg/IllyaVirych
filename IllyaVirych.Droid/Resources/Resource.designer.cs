@@ -7100,14 +7100,14 @@ namespace IllyaVirych.Droid
 			// aapt resource value: 0x7f0c00b0
 			public const int map = 2131493040;
 			
-			// aapt resource value: 0x7f0c00d1
-			public const int masked = 2131493073;
+			// aapt resource value: 0x7f0c00d2
+			public const int masked = 2131493074;
 			
 			// aapt resource value: 0x7f0c00b9
 			public const int media_actions = 2131493049;
 			
-			// aapt resource value: 0x7f0c00cf
-			public const int message = 2131493071;
+			// aapt resource value: 0x7f0c00d0
+			public const int message = 2131493072;
 			
 			// aapt resource value: 0x7f0c003e
 			public const int middle = 2131492926;
@@ -7121,17 +7121,17 @@ namespace IllyaVirych.Droid
 			// aapt resource value: 0x7f0c00c7
 			public const int name_text = 2131493063;
 			
-			// aapt resource value: 0x7f0c00d4
-			public const int nav_about = 2131493076;
-			
-			// aapt resource value: 0x7f0c00d2
-			public const int nav_items = 2131493074;
-			
 			// aapt resource value: 0x7f0c00d5
-			public const int nav_login = 2131493077;
+			public const int nav_about = 2131493077;
 			
 			// aapt resource value: 0x7f0c00d3
-			public const int nav_task = 2131493075;
+			public const int nav_items = 2131493075;
+			
+			// aapt resource value: 0x7f0c00d6
+			public const int nav_login = 2131493078;
+			
+			// aapt resource value: 0x7f0c00d4
+			public const int nav_task = 2131493076;
 			
 			// aapt resource value: 0x7f0c00ae
 			public const int navigation_frame = 2131493038;
@@ -7201,6 +7201,9 @@ namespace IllyaVirych.Droid
 			
 			// aapt resource value: 0x7f0c000e
 			public const int save_scale_type = 2131492878;
+			
+			// aapt resource value: 0x7f0c00ce
+			public const int savegooglemarker = 2131493070;
 			
 			// aapt resource value: 0x7f0c0036
 			public const int screen = 2131492918;
@@ -7361,8 +7364,8 @@ namespace IllyaVirych.Droid
 			// aapt resource value: 0x7f0c00cc
 			public const int toolbar = 2131493068;
 			
-			// aapt resource value: 0x7f0c00ce
-			public const int toolbar1 = 2131493070;
+			// aapt resource value: 0x7f0c00cf
+			public const int toolbar1 = 2131493071;
 			
 			// aapt resource value: 0x7f0c00cd
 			public const int toolbarmap = 2131493069;
@@ -7409,8 +7412,8 @@ namespace IllyaVirych.Droid
 			// aapt resource value: 0x7f0c0016
 			public const int view_offset_helper = 2131492886;
 			
-			// aapt resource value: 0x7f0c00d0
-			public const int visible = 2131493072;
+			// aapt resource value: 0x7f0c00d1
+			public const int visible = 2131493073;
 			
 			// aapt resource value: 0x7f0c0098
 			public const int webview = 2131493016;
