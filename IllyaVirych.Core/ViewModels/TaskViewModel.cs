@@ -30,8 +30,7 @@ namespace IllyaVirych.Core.ViewModels
         private bool _enableStatusNameTask;
         private string _userId;
         private double _lalitudeGoogleMarkerResult;
-        private double _longitudeGoogleMarkerResult;
-        private int _idMap;
+        private double _longitudeGoogleMarkerResult;       
         private MvxSubscriptionToken _token;
 
         public TaskViewModel(IMvxNavigationService navigationService, ITaskService iTaskService, IMvxMessenger messenger)
@@ -49,11 +48,13 @@ namespace IllyaVirych.Core.ViewModels
 
         private void OnLocationMessage(GoogleMapMessenger googleMap)
         {
+            IdTask = googleMap.IdTask;
             LalitudeGoogleMarkerResult = googleMap.LalitudeGoogleMarkerResult;
             LongitudeGoogleMarkerResult = googleMap.LongitudeGoogleMarkerResult;
             NameTask = googleMap.NameTaskResult;
             DescriptionTask = googleMap.DescriptionTaskResult;
             StatusTask = googleMap.StatusTaskResult;
+            EnableStatusNameTask = true;
         }
 
         private void DeleteMarkerGoogleMap()
@@ -67,6 +68,7 @@ namespace IllyaVirych.Core.ViewModels
             await _navigationService.Navigate<MapsViewModel>();
 
             var message = new GoogleMapMessenger(this, 
+                IdTask,
                 LalitudeGoogleMarkerResult,
                 LongitudeGoogleMarkerResult,
                 NameTask,
@@ -213,19 +215,6 @@ namespace IllyaVirych.Core.ViewModels
                 _enableStatusNameTask = value;
                 RaisePropertyChanged(() => EnableStatusNameTask);
             }
-        }
-
-        public int IdMap
-        {
-            get
-            {
-                return _idMap;
-            }
-            set
-            {
-                _idMap = value;
-                RaisePropertyChanged(() => IdMap);
-            }
-        }
+        }        
     }
 }

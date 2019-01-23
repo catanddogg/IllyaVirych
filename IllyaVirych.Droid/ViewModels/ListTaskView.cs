@@ -34,25 +34,5 @@ namespace IllyaVirych.Droid.ViewModels
             ViewModel.ShowMenuViewModelCommand.Execute(null);
             return view;
         }
-
-        public override void OnCreateOptionsMenu(IMenu menu, MenuInflater menuInflater)
-        {
-            menuInflater.Inflate(Resource.Menu.navigationmenu, menu);
-            base.OnCreateOptionsMenu(menu, menuInflater);
-        }
-
-        public override bool OnOptionsItemSelected(IMenuItem item)
-        {
-            if (item.ItemId == Resource.Id.nav_task)
-            {
-                ViewModel.TaskCreateCommand.Execute(null);
-            }
-            if (item.ItemId == Resource.Id.nav_about)
-            {
-                ViewModel.ShowAboutCommand.Execute(null);
-            }
-            return base.OnOptionsItemSelected(item);
-        }
-
     }
 }

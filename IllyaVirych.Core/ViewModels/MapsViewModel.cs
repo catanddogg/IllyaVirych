@@ -48,11 +48,12 @@ namespace IllyaVirych.Core.ViewModels
             LalitudeGoogleMarker = _lalitudeGoogleMarkerBack;
             LongitudeGoogleMarker = _longlitudeGoogleMarkerBack;
             var message = new GoogleMapMessenger(this,
+                _idTask,
              LalitudeGoogleMarker,
              LongitudeGoogleMarker,
-             NameTaskBackResult,
-             DescriptionTaskBackResult,
-             StatusTaskBackResult
+             _nameTaskBackResult,
+             _descriptionTaskBackResult,
+             _statusTaskBackResult
                 );
             _messenger.Publish(message);
             _messenger.Unsubscribe<GoogleMapMessenger>(_token);
@@ -60,11 +61,12 @@ namespace IllyaVirych.Core.ViewModels
 
         private void OnLosationMessage(GoogleMapMessenger googleMap)
         {
+            _idTask = googleMap.IdTask;
             LalitudeGoogleMarker = googleMap.LalitudeGoogleMarkerResult;
             LongitudeGoogleMarker= googleMap.LongitudeGoogleMarkerResult;
-            NameTaskBackResult = googleMap.NameTaskResult;
-            DescriptionTaskBackResult = googleMap.DescriptionTaskResult;
-            StatusTaskBackResult = googleMap.StatusTaskResult;
+            _nameTaskBackResult = googleMap.NameTaskResult;
+            _descriptionTaskBackResult = googleMap.DescriptionTaskResult;
+            _statusTaskBackResult = googleMap.StatusTaskResult;
             _lalitudeGoogleMarkerBack = googleMap.LalitudeGoogleMarkerResult;
             _longlitudeGoogleMarkerBack = googleMap.LongitudeGoogleMarkerResult;
         }
@@ -80,69 +82,18 @@ namespace IllyaVirych.Core.ViewModels
                 await _navigationService.Navigate<TaskViewModel>();
 
                 var message = new GoogleMapMessenger(this,
+                    _idTask,
               LalitudeGoogleMarker,
               LongitudeGoogleMarker,
-              NameTaskBackResult,
-              DescriptionTaskBackResult,
-              StatusTaskBackResult
+              _nameTaskBackResult,
+              _descriptionTaskBackResult,
+              _statusTaskBackResult
                  );
                 _messenger.Publish(message);
                 _messenger.Unsubscribe<GoogleMapMessenger>(_token);
             }
-        }          
+        }       
 
-        public string NameTaskBackResult
-        {
-            get
-            {
-                return _nameTaskBackResult;
-            }
-            set
-            {
-                _nameTaskBackResult = value;
-                RaisePropertyChanged(() => NameTaskBackResult);
-            }
-        }
-
-        public string DescriptionTaskBackResult
-        {
-            get
-            {
-                return _descriptionTaskBackResult;
-            }
-            set
-            {
-                _descriptionTaskBackResult = value;
-                RaisePropertyChanged(() => DescriptionTaskBackResult);
-            }
-        }
-
-        public bool StatusTaskBackResult
-        {
-            get
-            {
-                return _statusTaskBackResult;
-            }
-            set
-            {
-                _statusTaskBackResult = value;
-                RaisePropertyChanged(() => StatusTaskBackResult);
-            }
-        }
-
-        public int IdTask
-        {
-            get
-            {
-                return _idTask;
-            }
-            set
-            {
-                _idTask = value;
-                RaisePropertyChanged(() => IdTask);
-            }
-        }
-        
         public double LalitudeGoogleMarker
         {
             get
