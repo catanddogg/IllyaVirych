@@ -7,15 +7,22 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
-using UIKit;
 
-namespace Blank
+namespace IllyaVirych.IOS.Views
 {
-    [Register ("CustomViewController")]
-    partial class CustomViewControllercs
+    [Register ("LoginView")]
+    partial class LoginView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton TestButton { get; set; }
+
         void ReleaseDesignerOutlets ()
         {
+            if (TestButton != null) {
+                TestButton.Dispose ();
+                TestButton = null;
+            }
         }
     }
 }

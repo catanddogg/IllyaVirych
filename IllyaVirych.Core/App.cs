@@ -1,4 +1,7 @@
-﻿using IllyaVirych.Core.ViewModels;
+﻿using IllyaVirych.Core.Interface;
+using IllyaVirych.Core.Services;
+using IllyaVirych.Core.ViewModels;
+using MvvmCross;
 using MvvmCross.IoC;
 using MvvmCross.ViewModels;
 using System;
@@ -16,6 +19,8 @@ namespace IllyaVirych.Core
                .AsInterfaces()
                .RegisterAsLazySingleton();
 
+           
+            //RegisterAppStart<MainViewModel>();
             RegisterCustomAppStart<AppStart>();
         }
     }

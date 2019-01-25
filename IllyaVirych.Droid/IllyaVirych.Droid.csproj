@@ -69,14 +69,14 @@
     <Compile Include="SquareLayout\SquareLayout.cs" />
     <Compile Include="ViewAdapter\TaskViewAdapter.cs" />
     <Compile Include="ViewAdapter\TaskViewHolder.cs" />
-    <Compile Include="ViewModels\AboutView.cs" />
-    <Compile Include="ViewModels\BaseFragment.cs" />
-    <Compile Include="ViewModels\LoginView.cs" />
-    <Compile Include="ViewModels\ListTaskView.cs" />
-    <Compile Include="ViewModels\MainView.cs" />
-    <Compile Include="ViewModels\MapsView.cs" />
-    <Compile Include="ViewModels\MenuView.cs" />
-    <Compile Include="ViewModels\TaskView.cs" />
+    <Compile Include="Views\AboutView.cs" />
+    <Compile Include="Views\BaseFragment.cs" />
+    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\ListTaskView.cs" />
+    <Compile Include="Views\MainView.cs" />
+    <Compile Include="Views\MapsView.cs" />
+    <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Views\TaskView.cs" />
   </ItemGroup>
   <ItemGroup>
     <AndroidAsset Include="Assets\13185.ttf" />

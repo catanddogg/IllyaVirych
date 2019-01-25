@@ -12,11 +12,11 @@ namespace IllyaVirych.Core
 {
     public class AppStart : MvxAppStart 
     {
-        IMvxNavigationService _navigationService;
-        ILoginService _iLoginSrvice;
+        private readonly IMvxNavigationService _navigationService;
+        private readonly ILoginService _iLoginSrvice;
 
         public AppStart(IMvxApplication app, IMvxNavigationService navigationService, ILoginService iLoginService)
-            :base(app, navigationService)
+            : base(app, navigationService)
         {
             _navigationService = navigationService;
             _iLoginSrvice = iLoginService;
@@ -24,14 +24,16 @@ namespace IllyaVirych.Core
 
         protected override Task NavigateToFirstViewModel(object hint = null)
         {
-            if (_iLoginSrvice.FindAccount != null)
-            {
-                CurrentInstagramUser.CurrentInstagramUserId = _iLoginSrvice.FindAccount.Properties["id"];
-                NavigationService.Navigate<MainViewModel>();                
-                return _navigationService.Navigate<ListTaskViewModel>();
-            }
-            NavigationService.Navigate<MainViewModel>();
-            return _navigationService.Navigate<LoginViewModel>();
+            //if (_iLoginSrvice.FindAccount != null)
+            //{
+            //    CurrentInstagramUser.CurrentInstagramUserId = _iLoginSrvice.FindAccount.Properties["id"];
+            //    NavigationService.Navigate<MainViewModel>();                
+            //    return _navigationService.Navigate<ListTaskViewModel>();
+            //}
+            //NavigationService.Navigate<MainViewModel>();
+            //return _navigationService.Navigate<LoginViewModel>();
+            return NavigationService.Navigate<MainViewModel>();
+            //return _navigationService.Navigate<LoginViewModel>();
         }
     }
 }

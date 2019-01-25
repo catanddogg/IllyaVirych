@@ -1,4 +1,4 @@
-﻿using IllyaVirych.Core.Interface;
+﻿ using IllyaVirych.Core.Interface;
 using IllyaVirych.Core.Models;
 using IllyaVirych.Core.Services;
 using MvvmCross.Commands;

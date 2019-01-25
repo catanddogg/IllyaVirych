@@ -27,7 +27,7 @@ namespace IllyaVirych.Core.ViewModels
         private string _nameTaskBackResult;
         private string _descriptionTaskBackResult;
         private bool _statusTaskBackResult;
-        private MvxSubscriptionToken _token;
+        private readonly MvxSubscriptionToken _token;
         private double _lalitudeGoogleMarkerBack;
         private double _longlitudeGoogleMarkerBack;
 
