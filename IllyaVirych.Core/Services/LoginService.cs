@@ -19,10 +19,19 @@ namespace IllyaVirych.Core.Services
             _auth = new OAuth2Authenticator
                 (
                 clientId: "f0c8c1093c06475dbeadba39c6b3ac80",
+                //clientSecret: " 86906567ef3143888ca2f35ba1dc5367",
                 scope: "basic",
                 authorizeUrl: new Uri("https://www.instagram.com/oauth/authorize/?client_id=f0c8c1093c06475dbeadba39c6b3ac80&redirect"),
-                redirectUrl: new Uri("http://localhost")
+                redirectUrl: new Uri("http://localhost:3000/")               
+
+                //isUsingNativeUI: false               
                 );
+            //_auth.Error += (sender, eventArgs) =>
+            //{
+            //    OAuth2Authenticator auth2 = (OAuth2Authenticator)sender;
+            //    auth2.ShowErrors = false;
+            //    auth2.OnCancelled();
+            //};
             _auth.AllowCancel = true;                    
             _auth.Completed += InstagramCompletedAutgenticated;
         }   

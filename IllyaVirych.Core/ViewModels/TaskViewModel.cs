@@ -99,11 +99,11 @@ namespace IllyaVirych.Core.ViewModels
             }
             if (NameTask != null & NameTask != string.Empty)
             {
-                UserId = CurrentInstagramUser.CurrentInstagramUserId;
+                //UserId = CurrentInstagramUser.CurrentInstagramUserId;
                 TaskItem taskItem = new TaskItem(IdTask, NameTask, DescriptionTask, StatusTask,UserId, LalitudeGoogleMarkerResult, LongitudeGoogleMarkerResult);
                 _iTaskService.InsertTask(taskItem);               
             }
-            await _navigationService.Close(this);
+            await _navigationService.Navigate<ListTaskViewModel>();
         }
 
         public override Task Initialize()

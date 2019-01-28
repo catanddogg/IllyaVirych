@@ -27,8 +27,7 @@ namespace IllyaVirych.IOS.Views
 
         public override void ViewDidAppear(bool animated)
         {
-            base.ViewDidAppear(animated);
-            ViewModel.TestIOSCommand.Execute(null);
+            base.ViewDidAppear(animated);            
             if (_firstTimePresented)
             {
                 _firstTimePresented = false;

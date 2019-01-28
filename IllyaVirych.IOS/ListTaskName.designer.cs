@@ -7,21 +7,22 @@
 using Foundation;
 using System;
 using System.CodeDom.Compiler;
+using UIKit;
 
 namespace IllyaVirych.IOS
 {
-    [Register ("ListTaskView")]
-    partial class ListTaskView
+    [Register ("ListTaskName")]
+    partial class ListTaskName
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UICollectionView TaskListCollectionView { get; set; }
+        UIKit.UILabel NameTaskLabel { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (TaskListCollectionView != null) {
-                TaskListCollectionView.Dispose ();
-                TaskListCollectionView = null;
+            if (NameTaskLabel != null) {
+                NameTaskLabel.Dispose ();
+                NameTaskLabel = null;
             }
         }
     }

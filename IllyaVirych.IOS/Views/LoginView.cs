@@ -18,8 +18,21 @@ namespace IllyaVirych.IOS.Views
         {
             base.ViewDidLoad();
 
-            var set = this.CreateBindingSet<LoginView, LoginViewModel>();
+            //LoginButton.TouchUpInside += (sender, e) =>
+            //{
+            //    ViewModel.LoginCommand.Execute();
+            //    var ui = ViewModel.Authhenticator.GetUI();                
+            //    PresentedViewController(ui, true, null);
+            //};
+
+            var set = this.CreateBindingSet<LoginView, LoginViewModel>();            
             set.Apply();
+        }
+        partial void LoginViewButton(UIKit.UIButton sender)
+        {
+            ViewModel.LoginCommand.Execute();
+            var ui = ViewModel.Authhenticator.GetUI();
+            PresentViewController( ui, true, null ) ;
         }
     }
 }

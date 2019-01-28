@@ -8,24 +8,29 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace IllyaVirych.IOS.Views
+namespace IllyaVirych.IOS
 {
-    [Register ("LoginView")]
-    partial class LoginView
+    [Register ("MenuView")]
+    partial class MenuView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton LoginButton { get; set; }
+        UIKit.UIImageView ImageViewMenu { get; set; }
 
-        [Action ("LoginViewButton:")]
+        [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void LoginViewButton (UIKit.UIButton sender);
+        UIKit.UIStackView StackViewMenu { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (LoginButton != null) {
-                LoginButton.Dispose ();
-                LoginButton = null;
+            if (ImageViewMenu != null) {
+                ImageViewMenu.Dispose ();
+                ImageViewMenu = null;
+            }
+
+            if (StackViewMenu != null) {
+                StackViewMenu.Dispose ();
+                StackViewMenu = null;
             }
         }
     }

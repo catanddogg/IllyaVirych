@@ -65,7 +65,18 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="CustomControls\BaseView.cs" />
+    <Compile Include="CustomControls\MenuOption.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
+    <Compile Include="ListTaskName.cs" />
+    <Compile Include="ListTaskName.designer.cs">
+      <DependentUpon>ListTaskName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MenuView.cs" />
+    <Compile Include="Views\MenuView.designer.cs">
+      <DependentUpon>MenuView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TaskListCollectionViewSource.cs" />
     <Compile Include="Views\TaskView.cs" />
     <Compile Include="Views\TaskView.designer.cs">
       <DependentUpon>TaskView.cs</DependentUpon>
@@ -84,6 +95,9 @@
     <Compile Include="MvxBinding\NetworkIndicatorTargetBinding.cs" />
     <Compile Include="Setup.cs" />
     <Compile Include="Views\MainView.cs" />
+    <BundleResource Include="Resources\icons8-menu-filled-30.png" />
+    <BundleResource Include="Resources\iconsdelete48.png" />
+    <BundleResource Include="Resources\mqse9xro.jpg" />
     <None Include="Info.plist" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
@@ -98,8 +112,14 @@
     <InterfaceDefinition Include="Views\TaskView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\MenuView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
   </ItemGroup>
   <ItemGroup>
+    <Reference Include="Cirrious.FluentLayouts.Touch, Version=2.6.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Cirrious.FluentLayout.2.7.0\lib\Xamarin.iOS10\Cirrious.FluentLayouts.Touch.dll</HintPath>
+    </Reference>
     <Reference Include="MvvmCross, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.6.2.2\lib\xamarinios10\MvvmCross.dll</HintPath>
     </Reference>
@@ -128,6 +148,9 @@
     <Reference Include="System.Json" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
+    <Reference Include="TZStackView, Version=1.1.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TZStackView.1.1.1\lib\Xamarin.iOS10\TZStackView.dll</HintPath>
+    </Reference>
     <Reference Include="Xamarin.Auth, Version=1.6.0.1, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\Xamarin.Auth.1.6.0.4\lib\Xamarin.iOS10\Xamarin.Auth.dll</HintPath>
     </Reference>

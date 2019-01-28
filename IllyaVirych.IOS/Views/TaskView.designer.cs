@@ -19,11 +19,23 @@ namespace IllyaVirych.IOS
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextView DescriptionTask { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UITextField NameTask { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton SaveTaskButton { get; set; }
 
-        [Action ("SaveTaskButton_TouchUpInside:")]
+        [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        partial void SaveTaskButton_TouchUpInside (UIKit.UIButton sender);
+        UIKit.UISwitch StatusTask { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton tt { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
@@ -32,9 +44,29 @@ namespace IllyaVirych.IOS
                 DeleteTaskButton = null;
             }
 
+            if (DescriptionTask != null) {
+                DescriptionTask.Dispose ();
+                DescriptionTask = null;
+            }
+
+            if (NameTask != null) {
+                NameTask.Dispose ();
+                NameTask = null;
+            }
+
             if (SaveTaskButton != null) {
                 SaveTaskButton.Dispose ();
                 SaveTaskButton = null;
+            }
+
+            if (StatusTask != null) {
+                StatusTask.Dispose ();
+                StatusTask = null;
+            }
+
+            if (tt != null) {
+                tt.Dispose ();
+                tt = null;
             }
         }
     }

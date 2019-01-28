@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ListTaskView">
             <connections>
                 <outlet property="view" destination="2" id="RRd-Eg-VrN"/>
+                <outlet property="TaskListCollectionView" destination="208" id="name-outlet-208"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -16,28 +17,50 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <subviews>
-                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="156" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                    <rect key="frame" x="8" y="83" width="400" height="645"/>
-                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="158">
-                        <size key="itemSize" width="50" height="50"/>
+                <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="208" translatesAutoresizingMaskIntoConstraints="NO">
+                    <rect key="frame" x="0.0" y="65" width="414" height="671"/>
+                    <color key="backgroundColor" colorSpace="calibratedRGB" red="0.403921568627451" green="0.39215686274509803" blue="0.39215686274509803" alpha="1"/>
+                    <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="210">
+                        <size key="itemSize" width="180" height="180"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
-                        <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                        <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                     </collectionViewFlowLayout>
                     <cells>
-                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="157">
+                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="209" customClass="ListTaskName" reuseIdentifier="ListTaskName">
                             <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                 <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                 <autoresizingMask key="autoresizingMask"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2053" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
+                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                             </view>
+                            <size key="customSize" width="180" height="180"/>
+                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.19607843137254902" green="0.57647058823529407" blue="0.10588235294117647" alpha="1"/>
+                            <connections>
+                                <outlet property="NameTaskLabel" destination="2053" id="name-outlet-2053"/>
+                            </connections>
                         </collectionViewCell>
                     </cells>
+                    <constraints>
+                        <constraint id="1931" firstAttribute="height" constant="671"/>
+                    </constraints>
                 </collectionView>
             </subviews>
+            <constraints>
+                <constraint id="1767" firstItem="208" firstAttribute="trailing" secondItem="2" secondAttribute="trailing"/>
+                <constraint id="1808" firstItem="208" firstAttribute="leading" secondItem="2" secondAttribute="leading"/>
+                <constraint id="1849" firstItem="208" firstAttribute="top" secondItem="2" secondAttribute="top" constant="65"/>
+                <constraint id="1890" firstItem="208" firstAttribute="bottom" secondItem="2" secondAttribute="bottom"/>
+            </constraints>
         </view>
     </objects>
 </document>
