@@ -11,8 +11,8 @@ using UIKit;
 
 namespace IllyaVirych.IOS
 {
-    [Register ("ListTaskName")]
-    partial class ListTaskName
+    [Register ("ListTaskNameCell")]
+    partial class ListTaskNameCell
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]

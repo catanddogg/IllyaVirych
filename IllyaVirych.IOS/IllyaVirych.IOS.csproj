@@ -65,25 +65,39 @@
     <AppExtensionDebugBundleId />
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="MapKit\MKAnnotationClass.cs" />
+    <Compile Include="Views\TestLoginView.cs" />
+    <Compile Include="Views\TestLoginView.designer.cs">
+      <DependentUpon>TestLoginView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MapsView.cs" />
+    <Compile Include="Views\MapsView.designer.cs">
+      <DependentUpon>MapsView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AboutView.cs" />
+    <Compile Include="Views\AboutView.designer.cs">
+      <DependentUpon>AboutView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\ColorValueConverter.cs" />
     <Compile Include="CustomControls\BaseView.cs" />
     <Compile Include="CustomControls\MenuOption.cs" />
     <Compile Include="LinkerPleaseInclude.cs" />
-    <Compile Include="ListTaskName.cs" />
-    <Compile Include="ListTaskName.designer.cs">
-      <DependentUpon>ListTaskName.cs</DependentUpon>
+    <Compile Include="Cell\ListTaskNameCell.cs" />
+    <Compile Include="Cell\ListTaskNameCell.designer.cs">
+      <DependentUpon>ListTaskNameCell.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ListTaskView.cs" />
+    <Compile Include="Views\ListTaskView.designer.cs">
+      <DependentUpon>ListTaskView.cs</DependentUpon>
     </Compile>
     <Compile Include="Views\MenuView.cs" />
     <Compile Include="Views\MenuView.designer.cs">
       <DependentUpon>MenuView.cs</DependentUpon>
     </Compile>
-    <Compile Include="Views\TaskListCollectionViewSource.cs" />
+    <Compile Include="Cell\TaskListCollectionViewSource.cs" />
     <Compile Include="Views\TaskView.cs" />
     <Compile Include="Views\TaskView.designer.cs">
       <DependentUpon>TaskView.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Views\ListTaskView.cs" />
-    <Compile Include="Views\ListTaskView.designer.cs">
-      <DependentUpon>ListTaskView.cs</DependentUpon>
     </Compile>
     <Compile Include="Services\DatabaseConnectionService.cs" />
     <Compile Include="Views\LoginView.cs" />
@@ -98,21 +112,36 @@
     <BundleResource Include="Resources\icons8-menu-filled-30.png" />
     <BundleResource Include="Resources\iconsdelete48.png" />
     <BundleResource Include="Resources\mqse9xro.jpg" />
-    <None Include="Info.plist" />
+    <BundleResource Include="Resources\icons8-back-filled-30.png" />
+    <BundleResource Include="Resources\icons8-plus-math-filled-30.png" />
+    <BundleResource Include="Resources\baseline_add_location_black_48dp.png" />
+    <InterfaceDefinition Include="Cell\ListTaskNameCell.xib" />
+    <None Include="Info.plist">
+      <SubType>Designer</SubType>
+    </None>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Content Include="Entitlements.plist" />
     <InterfaceDefinition Include="Resources\LaunchScreen.storyboard" />
     <None Include="packages.config" />
-    <InterfaceDefinition Include="Views\LoginView.xib">
+    <InterfaceDefinition Include="Views\ListTaskView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
-    <InterfaceDefinition Include="Views\ListTaskView.xib">
+    <InterfaceDefinition Include="Views\LoginView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
     <InterfaceDefinition Include="Views\TaskView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
     <InterfaceDefinition Include="Views\MenuView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\AboutView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\MapsView.xib">
+      <SubType>Designer</SubType>
+    </InterfaceDefinition>
+    <InterfaceDefinition Include="Views\TestLoginView.xib">
       <SubType>Designer</SubType>
     </InterfaceDefinition>
   </ItemGroup>
@@ -122,6 +151,9 @@
     </Reference>
     <Reference Include="MvvmCross, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.6.2.2\lib\xamarinios10\MvvmCross.dll</HintPath>
+    </Reference>
+    <Reference Include="MvvmCross.Plugin.Color, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\MvvmCross.Plugin.Color.6.2.2\lib\xamarinios10\MvvmCross.Plugin.Color.dll</HintPath>
     </Reference>
     <Reference Include="MvvmCross.Plugin.Messenger, Version=6.2.2.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmCross.Plugin.Messenger.6.2.2\lib\netstandard2.0\MvvmCross.Plugin.Messenger.dll</HintPath>

@@ -32,6 +32,7 @@ namespace IllyaVirych.Core.Services
             //    auth2.ShowErrors = false;
             //    auth2.OnCancelled();
             //};
+            _auth.ClearCookiesBeforeLogin = true;
             _auth.AllowCancel = true;                    
             _auth.Completed += InstagramCompletedAutgenticated;
         }   

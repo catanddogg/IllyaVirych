@@ -15,6 +15,7 @@ namespace IllyaVirych.Core.ViewModels
         private readonly ILoginService _iLoginService;         
         public IMvxCommand CurrentMainViewCommand { get; set; }   
         public IMvxCommand TestIOSCommand { get; set; }
+        public IMvxCommand MenuViewCommand { get; set; }
 
         public MainViewModel(IMvxNavigationService navigationService, ILoginService iLoginService)
         {
@@ -22,7 +23,8 @@ namespace IllyaVirych.Core.ViewModels
             _iLoginService = iLoginService;
             
             CurrentMainViewCommand = new MvxAsyncCommand(CurrentMainView);
-            TestIOSCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ListTaskViewModel>());
+            TestIOSCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<TestLoginViewModel>());
+            MenuViewCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ListTaskViewModel>());
         }
 
         private async Task CurrentMainView()

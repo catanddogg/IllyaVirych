@@ -5,23 +5,24 @@
 // Manual changes to this file will not be maintained.
 //
 using Foundation;
+using MapKit;
 using System;
 using System.CodeDom.Compiler;
 
 namespace IllyaVirych.IOS.Views
 {
-    [Register ("ListTaskView")]
-    partial class ListTaskView
+    [Register ("MapsView")]
+    partial class MapsView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UICollectionView TaskListCollectionView { get; set; }
+        MKMapView MapViewIOS { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (TaskListCollectionView != null) {
-                TaskListCollectionView.Dispose ();
-                TaskListCollectionView = null;
+            if (MapViewIOS != null) {
+                MapViewIOS.Dispose ();
+                MapViewIOS = null;
             }
         }
     }

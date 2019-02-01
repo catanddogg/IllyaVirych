@@ -8,29 +8,74 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace IllyaVirych.IOS
+namespace IllyaVirych.IOS.Views
 {
     [Register ("MenuView")]
     partial class MenuView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton AbouTaskButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton CreateTaskButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIImageView ImageViewMenu { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIStackView StackViewMenu { get; set; }
+        UIKit.UIButton LogoutButton { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView MenuViewController { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView MenuViewN { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIView NavigationViewMenu { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
+            if (AbouTaskButton != null) {
+                AbouTaskButton.Dispose ();
+                AbouTaskButton = null;
+            }
+
+            if (CreateTaskButton != null) {
+                CreateTaskButton.Dispose ();
+                CreateTaskButton = null;
+            }
+
             if (ImageViewMenu != null) {
                 ImageViewMenu.Dispose ();
                 ImageViewMenu = null;
             }
 
-            if (StackViewMenu != null) {
-                StackViewMenu.Dispose ();
-                StackViewMenu = null;
+            if (LogoutButton != null) {
+                LogoutButton.Dispose ();
+                LogoutButton = null;
+            }
+
+            if (MenuViewController != null) {
+                MenuViewController.Dispose ();
+                MenuViewController = null;
+            }
+
+            if (MenuViewN != null) {
+                MenuViewN.Dispose ();
+                MenuViewN = null;
+            }
+
+            if (NavigationViewMenu != null) {
+                NavigationViewMenu.Dispose ();
+                NavigationViewMenu = null;
             }
         }
     }

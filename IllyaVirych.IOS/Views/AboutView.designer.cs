@@ -10,18 +10,18 @@ using System.CodeDom.Compiler;
 
 namespace IllyaVirych.IOS.Views
 {
-    [Register ("ListTaskView")]
-    partial class ListTaskView
+    [Register ("AboutView")]
+    partial class AboutView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UICollectionView TaskListCollectionView { get; set; }
+        UIKit.UILabel AboutTaskLabel { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (TaskListCollectionView != null) {
-                TaskListCollectionView.Dispose ();
-                TaskListCollectionView = null;
+            if (AboutTaskLabel != null) {
+                AboutTaskLabel.Dispose ();
+                AboutTaskLabel = null;
             }
         }
     }

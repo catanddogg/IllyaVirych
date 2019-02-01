@@ -16,6 +16,7 @@ namespace IllyaVirych.Core.ViewModels
         public IMvxCommand TaskCreateViewCommand { get; set; }
         public IMvxCommand AboutViewCommand { get; set; }
         public IMvxCommand LoginViewCommand { get; set; }
+        public IMvxCommand ListTaskViewCommand { get; set; }
 
         public MenuViewModel(IMvxNavigationService navigationService, ILoginService iLoginService)
         {
@@ -23,6 +24,7 @@ namespace IllyaVirych.Core.ViewModels
             _iLoginService = iLoginService;
             TaskCreateViewCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<TaskViewModel>());
             AboutViewCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<AboutTaskViewModel>());
+            ListTaskViewCommand = new MvxAsyncCommand(async () => await _navigationService.Navigate<ListTaskViewModel>());
             LoginViewCommand = new MvxAsyncCommand(LogoutInstagram);
         }
         private async Task LogoutInstagram()

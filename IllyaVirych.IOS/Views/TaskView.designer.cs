@@ -8,11 +8,15 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace IllyaVirych.IOS
+namespace IllyaVirych.IOS.Views
 {
     [Register ("TaskView")]
     partial class TaskView
     {
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton DeleteMarkerButton { get; set; }
+
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UIButton DeleteTaskButton { get; set; }
@@ -20,6 +24,10 @@ namespace IllyaVirych.IOS
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UITextView DescriptionTask { get; set; }
+
+        [Outlet]
+        [GeneratedCode ("iOS Designer", "1.0")]
+        UIKit.UIButton MapButton { get; set; }
 
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
@@ -33,12 +41,13 @@ namespace IllyaVirych.IOS
         [GeneratedCode ("iOS Designer", "1.0")]
         UIKit.UISwitch StatusTask { get; set; }
 
-        [Outlet]
-        [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UIButton tt { get; set; }
-
         void ReleaseDesignerOutlets ()
         {
+            if (DeleteMarkerButton != null) {
+                DeleteMarkerButton.Dispose ();
+                DeleteMarkerButton = null;
+            }
+
             if (DeleteTaskButton != null) {
                 DeleteTaskButton.Dispose ();
                 DeleteTaskButton = null;
@@ -47,6 +56,11 @@ namespace IllyaVirych.IOS
             if (DescriptionTask != null) {
                 DescriptionTask.Dispose ();
                 DescriptionTask = null;
+            }
+
+            if (MapButton != null) {
+                MapButton.Dispose ();
+                MapButton = null;
             }
 
             if (NameTask != null) {
@@ -62,11 +76,6 @@ namespace IllyaVirych.IOS
             if (StatusTask != null) {
                 StatusTask.Dispose ();
                 StatusTask = null;
-            }
-
-            if (tt != null) {
-                tt.Dispose ();
-                tt = null;
             }
         }
     }

@@ -21,35 +21,12 @@
                     <rect key="frame" x="0.0" y="65" width="414" height="671"/>
                     <color key="backgroundColor" colorSpace="calibratedRGB" red="0.403921568627451" green="0.39215686274509803" blue="0.39215686274509803" alpha="1"/>
                     <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="5" minimumInteritemSpacing="5" id="210">
-                        <size key="itemSize" width="180" height="180"/>
+                        <size key="itemSize" width="170" height="170"/>
                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                         <inset key="sectionInset" minX="10" minY="10" maxX="10" maxY="10"/>
                     </collectionViewFlowLayout>
-                    <cells>
-                        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="209" customClass="ListTaskName" reuseIdentifier="ListTaskName">
-                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                                <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="2053" translatesAutoresizingMaskIntoConstraints="NO" fixedFrame="YES">
-                                        <rect key="frame" x="0.0" y="0.0" width="180" height="180"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                </subviews>
-                            </view>
-                            <size key="customSize" width="180" height="180"/>
-                            <color key="backgroundColor" colorSpace="calibratedRGB" red="0.19607843137254902" green="0.57647058823529407" blue="0.10588235294117647" alpha="1"/>
-                            <connections>
-                                <outlet property="NameTaskLabel" destination="2053" id="name-outlet-2053"/>
-                            </connections>
-                        </collectionViewCell>
-                    </cells>
+                    <cells/>
                     <constraints>
                         <constraint id="1931" firstAttribute="height" constant="671"/>
                     </constraints>

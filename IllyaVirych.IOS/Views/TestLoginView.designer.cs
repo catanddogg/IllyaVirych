@@ -8,20 +8,20 @@ using Foundation;
 using System;
 using System.CodeDom.Compiler;
 
-namespace IllyaVirych.IOS.Views
+namespace IllyaVirych.IOS
 {
-    [Register ("ListTaskView")]
-    partial class ListTaskView
+    [Register ("TestLoginView")]
+    partial class TestLoginView
     {
         [Outlet]
         [GeneratedCode ("iOS Designer", "1.0")]
-        UIKit.UICollectionView TaskListCollectionView { get; set; }
+        UIKit.UILabel TestLabel { get; set; }
 
         void ReleaseDesignerOutlets ()
         {
-            if (TaskListCollectionView != null) {
-                TaskListCollectionView.Dispose ();
-                TaskListCollectionView = null;
+            if (TestLabel != null) {
+                TestLabel.Dispose ();
+                TestLabel = null;
             }
         }
     }

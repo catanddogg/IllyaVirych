@@ -18,14 +18,14 @@
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="2692" translatesAutoresizingMaskIntoConstraints="NO">
-                    <rect key="frame" x="170" y="160" width="62" height="53"/>
-                    <state key="normal" title="Button"/>
-                    <constraints>
-                        <constraint id="6492" firstAttribute="height" constant="53"/>
-                    </constraints>
+                    <rect key="frame" x="136" y="160" width="123" height="164"/>
                     <connections>
                         <action selector="LoginViewButton:" destination="-1" id="6709" eventType="touchUpInside"/>
                     </connections>
+                    <constraints>
+                        <constraint id="7225" firstAttribute="height" constant="164"/>
+                    </constraints>
+                    <state key="normal" title="Login"/>
                 </button>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome to Application!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="5684" translatesAutoresizingMaskIntoConstraints="NO">
                     <rect key="frame" x="76" y="69" width="248" height="21"/>
@@ -43,10 +43,10 @@
                 <constraint id="6148" firstAttribute="bottom" secondItem="5684" secondAttribute="bottom" constant="646"/>
                 <constraint id="6191" firstAttribute="trailing" secondItem="5684" secondAttribute="trailing" constant="90"/>
                 <constraint id="6234" firstItem="5684" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="76"/>
-                <constraint id="6320" firstItem="2692" firstAttribute="top" secondItem="2" secondAttribute="top" constant="160"/>
-                <constraint id="6363" firstAttribute="trailing" secondItem="2692" secondAttribute="trailing" constant="182"/>
-                <constraint id="6406" firstItem="2692" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="170"/>
-                <constraint id="6449" firstAttribute="bottom" secondItem="2692" secondAttribute="bottom" constant="523"/>
+                <constraint id="7227" firstItem="2692" firstAttribute="top" secondItem="2" secondAttribute="top" constant="160"/>
+                <constraint id="7228" firstItem="2692" firstAttribute="leading" secondItem="2" secondAttribute="leading" constant="136"/>
+                <constraint id="7229" firstAttribute="trailing" secondItem="2692" secondAttribute="trailing" constant="155"/>
+                <constraint id="7230" firstAttribute="bottom" secondItem="2692" secondAttribute="bottom" constant="412"/>
             </constraints>
         </view>
     </objects>
